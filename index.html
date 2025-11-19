@@ -2,61 +2,510 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Babylon Delicatessen - BSB</title>
+  <title>Babylon BSB – Delicatessen, Grill & Música ao Vivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Babylon BSB – Delicatessen, grill e música ao vivo em Samambaia. Em breve, a casa mais comentada de Brasília." />
   <style>
-    body {
+    :root {
+      --bg1: #1a0033;
+      --bg2: #ff00ff;
+      --bg3: #7b00ff;
+      --accent: #00ff99;
+      --accent-soft: rgba(0, 255, 153, 0.12);
+      --text-main: #ffffff;
+      --text-soft: #e3d7ff;
+      --card-bg: rgba(10, 0, 40, 0.85);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #ff00ff, #050012);
-      color: #fff;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #ff4bff 0, #3b0080 35%, #040014 100%);
+      overflow-x: hidden;
+    }
+
+    /* Fundo animado */
+    .gradient-orbit {
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 0, 153, 0.45), transparent 55%),
+        radial-gradient(circle at 90% 10%, rgba(0, 255, 204, 0.35), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(124, 77, 255, 0.6), transparent 55%);
+      filter: blur(30px);
+      opacity: 0.7;
+      z-index: -2;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGlow {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        transform: translate3d(0, -40px, 0) scale(1.05);
+      }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      mix-blend-mode: soft-light;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      opacity: 0.8;
+    }
+
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tag-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.04));
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.7);
+    }
+
+    /* Hero principal */
+    .hero {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-main {
+      padding: 28px 26px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.14), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 255, 204, 0.16), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-text {
+      text-align: center;
+      margin: 0 auto 22px;
+      max-width: 520px;
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .hero-cta-row {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
     }
-    h1 {
-      font-size: 2.5rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-    h2 {
-      font-weight: 400;
-      margin-top: 0.5rem;
-    }
-    .tagline {
-      margin-top: 1rem;
-      font-size: 1rem;
-      max-width: 480px;
-    }
-    .btn-whats {
-      margin-top: 2rem;
-      padding: 12px 24px;
-      border-radius: 999px;
+
+    .cta-whats {
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
       border: none;
-      font-size: 1rem;
+      background: radial-gradient(circle at top, var(--accent), #11c16b);
+      color: #02120b;
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
-      background: #25d366;
-      color: #000;
       text-decoration: none;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 153, 0.8);
+      transform: translateY(0);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
     }
-    .btn-whats:hover {
+
+    .cta-whats span.icon {
+      font-size: 1.1rem;
+    }
+
+    .cta-whats:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75), 0 0 36px rgba(0, 255, 153, 0.95);
+      filter: brightness(1.03);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: rgba(227, 215, 255, 0.7);
+    }
+
+    /* Coluna lateral */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 16px 18px;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(18px);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .card-main {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.76rem;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(8, 0, 30, 0.7);
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .timeline {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    .timeline strong {
+      color: var(--accent);
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .highlight {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.85));
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .highlight-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      color: rgba(227, 215, 255, 0.75);
+    }
+
+    .highlight-main {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Rodapé */
+    footer {
+      margin-top: 10px;
+      padding: 16px 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: rgba(227, 215, 255, 0.7);
+    }
+
+    .footer-left span {
       opacity: 0.85;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 500;
+      border-bottom: 1px dotted rgba(0, 255, 153, 0.7);
+    }
+
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(227, 215, 255, 0.6);
+    }
+
+    /* Responsivo */
+    @media (max-width: 840px) {
+      main {
+        padding-top: 24px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-main {
+        order: 1;
+      }
+      .hero-side {
+        order: 2;
+      }
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-main {
+        padding: 22px 18px;
+      }
+      .hero-title {
+        letter-spacing: 0.22em;
+      }
+      .hero-text {
+        font-size: 0.9rem;
+      }
+      .highlights {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Babylon BSB</h1>
-  <h2>Delicatessen · Música ao vivo</h2>
-  <p class="tagline">
-    Em breve, a casa mais comentada de Samambaia.  
-    Gastronomia, drinks e experiências inspiradas nas lendas da Babilônia.
-  </p>
-  <a class="btn-whats" href="https://wa.me/5561995097813" target="_blank">
-    Fale com a Babylon pelo WhatsApp
-  </a>
+  <div class="gradient-orbit"></div>
+  <div class="noise-overlay"></div>
+
+  <main>
+    <header>
+      <div class="brand">
+        <div class="brand-label">Samambaia · Brasília · DF</div>
+        <div class="brand-name">Babylon BSB</div>
+      </div>
+      <div class="tag-pill">
+        <div class="tag-dot"></div>
+        Pré-abertura · 2026
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-kicker">Em breve</div>
+        <h1 class="hero-title">Babylon BSB</h1>
+        <h2 class="hero-subtitle">Delicatessen · Grill · Música ao vivo</h2>
+        <p class="hero-text">
+          Em breve, a casa mais comentada de Samambaia. Uma experiência completa
+          de gastronomia, drinks autorais e música ao vivo em um ambiente inspirado
+          nas lendas e excessos da antiga Babilônia.
+        </p>
+
+        <div class="hero-cta-row">
+          <a
+            class="cta-whats"
+            href="https://wa.me/5561995097813?text=Quero%20saber%20mais%20sobre%20a%20Babylon%20BSB"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="icon">💬</span>
+            <span>Fale com a Babylon pelo WhatsApp</span>
+          </a>
+          <p class="hero-note">
+            Receba novidades de inauguração, eventos exclusivos e pré-venda de mesas VIP.
+          </p>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="card">
+          <div class="card-title">Experiência Babylon</div>
+          <div class="card-main">Muito além de um bar ou restaurante.</div>
+          <div class="pill-row">
+            <span class="pill">Carnes & grill na brasa</span>
+            <span class="pill">Delicatessen & charcutaria</span>
+            <span class="pill">Drinks autorais & clássicos</span>
+            <span class="pill">Line-up de música ao vivo</span>
+          </div>
+          <p class="timeline">
+            <strong>Fase atual:</strong> obras, montagem de cozinha, bar e palco.
+            <br />
+            <strong>Próximo passo:</strong> soft opening para convidados e lista VIP.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">O que te espera</div>
+          <div class="highlights">
+            <div class="highlight">
+              <span class="highlight-label">Gastronomia</span>
+              <span class="highlight-main">Burgers, espetinhos, pizzas & comida de boteco</span>
+              <span>Receitas assinadas, defumações e escondidinhos autorais.</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-label">Drinks & bar</span>
+              <span class="highlight-main">Carta pensada para noites longas</span>
+              <span>Clássicos, releituras e coquetelaria criativa.</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-label">Música & noite</span>
+              <span class="highlight-main">Som ao vivo e clima de Babilônia</span>
+              <span>Do soft jazz ao rock, passando pelo melhor do pop & samba.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <div class="footer-left">
+        <span>© Babylon BSB · Samambaia · Brasília · DF</span>
+      </div>
+      <div class="footer-right">
+        <span>Siga os bastidores:</span>
+        <span class="footer-dot"></span>
+        <a
+          class="footer-link"
+          href="https://instagram.com/babylon.bsb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @babylon.bsb
+        </a>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
