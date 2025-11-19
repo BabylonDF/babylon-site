@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <title>Babylon BSB – Delicatessen, Grill & Música ao Vivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Babylon BSB – Delicatessen, grill e música ao vivo em Samambaia. Em breve, a casa mais comentada de Brasília." />
+  <meta
+    name="description"
+    content="Babylon BSB – Delicatessen, grill, rooftop e música ao vivo em Samambaia. Em breve, a casa mais comentada de Brasília."
+  />
   <style>
     :root {
       --bg1: #1a0033;
@@ -329,9 +331,177 @@
       font-weight: 600;
     }
 
+    /* Seção Rooftop */
+    .section {
+      margin-top: 12px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .section-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(227, 215, 255, 0.7);
+      opacity: 0.9;
+    }
+
+    .rooftop-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .rooftop-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 22px 22px 20px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rooftop-title {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .rooftop-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .rooftop-text {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
+
+    .rooftop-list {
+      list-style: none;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      padding-left: 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .rooftop-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .rooftop-list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 6px;
+      box-shadow: 0 0 12px rgba(0, 255, 153, 0.7);
+    }
+
+    .rooftop-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .rooftop-badge {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(8, 0, 30, 0.85);
+      color: var(--text-soft);
+    }
+
+    .rooftop-cta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .rooftop-cta-note {
+      font-size: 0.8rem;
+      color: rgba(227, 215, 255, 0.75);
+    }
+
+    .rooftop-media {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      min-height: 220px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 55%),
+        radial-gradient(circle at bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+    }
+
+    .rooftop-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .rooftop-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 60%);
+    }
+
+    .rooftop-media-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .rooftop-media-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(227, 215, 255, 0.9);
+    }
+
+    .rooftop-media-main {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
     /* Rodapé */
     footer {
-      margin-top: 10px;
+      margin-top: 18px;
       padding: 16px 12px 20px;
       display: flex;
       justify-content: space-between;
@@ -367,6 +537,12 @@
     }
 
     /* Responsivo */
+    @media (max-width: 960px) {
+      .rooftop-wrapper {
+        grid-template-columns: minmax(0, 1.1fr);
+      }
+    }
+
     @media (max-width: 840px) {
       main {
         padding-top: 24px;
@@ -434,14 +610,17 @@
         </p>
 
         <div class="hero-cta-row">
-<a href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN" target="_blank" 
-   style="background-color: #25D366; padding: 15px 30px; border-radius: 30px; color: #fff; font-weight: bold; 
-   text-decoration: none; font-size: 18px;">
-   Entre para o Grupo VIP da Babylon
-</a>
-
+          <a
+            class="cta-whats"
+            href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="icon">💬</span>
+            <span>Entre para o Grupo VIP Babylon</span>
+          </a>
           <p class="hero-note">
-            Receba novidades de inauguração, eventos exclusivos e pré-venda de mesas VIP.
+            Receba novidades da inauguração, reservas exclusivas, pré-venda do Rooftop e eventos fechados.
           </p>
         </div>
       </div>
@@ -457,7 +636,7 @@
             <span class="pill">Line-up de música ao vivo</span>
           </div>
           <p class="timeline">
-            <strong>Fase atual:</strong> obras, montagem de cozinha, bar e palco.
+            <strong>Fase atual:</strong> obras, montagem de cozinha, bar, palco e Rooftop.
             <br />
             <strong>Próximo passo:</strong> soft opening para convidados e lista VIP.
           </p>
@@ -478,12 +657,99 @@
             </div>
             <div class="highlight">
               <span class="highlight-label">Música & noite</span>
-              <span class="highlight-main">Som ao vivo e clima de Babilônia</span>
-              <span>Do soft jazz ao rock, do pop ao samba e pagode, do sertanejo ao House — aqui, cada noite vira uma experiência sonora completa.</span>
+              <span class="highlight-main">
+                Do soft jazz ao rock, do pop ao samba e pagode, do sertanejo ao House — aqui, cada noite vira
+                uma experiência sonora completa.
+              </span>
             </div>
           </div>
         </div>
       </aside>
+    </section>
+
+    <!-- SEÇÃO ROOFTOP -->
+    <section class="section" aria-labelledby="rooftop-title-section">
+      <div class="section-header">
+        <h2 id="rooftop-title-section" class="section-title">Experiência VIP · Babylon Rooftop</h2>
+        <div class="section-tag">Jacuzzi · Churrasqueira · Cardápio exclusivo</div>
+      </div>
+
+      <div class="rooftop-wrapper">
+        <div class="rooftop-card">
+          <div class="rooftop-subtitle">Acima da cidade</div>
+          <h3 class="rooftop-title">Rooftop com alma de Babilônia</h3>
+          <p class="rooftop-text">
+            O Babylon Rooftop é o espaço mais exclusivo da casa: uma área elevada, pensada para noites
+            intensas, experiências privadas e momentos que não se repetem.
+          </p>
+
+          <ul class="rooftop-list">
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Jacuzzi com borda de vidro</strong> e visual privilegiado — cenário perfeito para celebrar,
+                relaxar e brindar.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Churrasqueira privativa</strong> dedicada ao grupo, com cortes selecionados e preparo
+                sob medida.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Cardápio diferenciado</strong>, criado apenas para o Rooftop: entradas, pratos e drinks
+                que não serão servidos no salão principal.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                Experiência pensada para até <strong>6 clientes VIPs</strong> por horário, garantindo exclusividade total.
+              </span>
+            </li>
+          </ul>
+
+          <div class="rooftop-badge-row">
+            <span class="rooftop-badge">Reserva antecipada obrigatória</span>
+            <span class="rooftop-badge">Pacote fechado comida + bebida</span>
+            <span class="rooftop-badge">Ideal para celebrações e reuniões privadas</span>
+          </div>
+
+          <div class="rooftop-cta">
+            <a
+              class="cta-whats"
+              href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="icon">🔥</span>
+              <span>Reservar interesse no Rooftop</span>
+            </a>
+            <p class="rooftop-cta-note">
+              Entre no Grupo VIP Babylon e seja avisado quando as primeiras datas forem abertas.
+            </p>
+          </div>
+        </div>
+
+        <div class="rooftop-media">
+          <img
+            class="rooftop-image"
+            src="https://images.unsplash.com/photo-1506086679525-9f613d656a03?q=80&w=1400"
+            alt="Vista de rooftop noturno com luzes e piscina"
+          />
+          <div class="rooftop-media-overlay"></div>
+          <div class="rooftop-media-label">
+            <div class="rooftop-media-tag">Preview conceitual</div>
+            <div class="rooftop-media-main">
+              Jacuzzi com borda de vidro, iluminação neon e clima de festa privada no topo da Babylon.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
