@@ -11,18 +11,19 @@
   <style>
     :root {
       /* Paleta com base na logo, focada em OURO (sem cara de cobre) */
-      --bg-deep: #050308;          /* fundo quase preto, neutro */
-      --bg-navy: #0b0913;          /* roxo/azul bem escuro, combina com a logo */
-      --bg-teal: #1c1428;          /* tom escuro neutro, sem marrom/cobre */
-      --gold: #f2c94c;             /* dourado principal (mais ouro, menos cobre) */
-      --gold-soft: rgba(242, 201, 76, 0.20);
+      --bg-deep: #04030a;          /* fundo quase preto */
+      --bg-navy: #070616;         /* roxo/azul bem escuro */
+      --bg-teal: #141027;         /* tom escuro neutro */
+      --gold: #f2c94c;            /* dourado principal */
+      --gold-strong: #ffe46b;     /* dourado mais intenso para brilhos */
+      --gold-soft: rgba(242, 201, 76, 0.22);
       --accent: #f2c94c;
       --accent2: #cfa300;
       --text-main: #ffffff;
       --text-soft: #f5ecd9;
-      --card-bg: rgba(5, 3, 12, 0.96);
-      --border-soft: rgba(255, 255, 255, 0.12);
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.8);
+      --card-bg: rgba(5, 3, 18, 0.96);
+      --border-soft: rgba(255, 255, 255, 0.14);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.85);
       --radius-xl: 24px;
       --radius-pill: 999px;
     }
@@ -38,15 +39,19 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
 
-      /* Fundo escuro com halos DOURADOS, sem marrom/cobre */
+      /* Fundo escuro com halos DOURADOS fortes */
       background:
-        radial-gradient(circle at top,
-          rgba(242, 201, 76, 0.42),
-          transparent 58%
+        radial-gradient(circle at 12% 0%,
+          rgba(255, 243, 176, 0.70),
+          transparent 55%
         ),
-        radial-gradient(circle at 30% 80%,
-          rgba(255, 235, 160, 0.26),
-          transparent 72%
+        radial-gradient(circle at 80% 12%,
+          rgba(255, 230, 140, 0.45),
+          transparent 60%
+        ),
+        radial-gradient(circle at 22% 78%,
+          rgba(255, 220, 120, 0.32),
+          transparent 70%
         ),
         radial-gradient(circle at bottom,
           var(--bg-deep),
@@ -71,7 +76,6 @@
     }
 
     .logo-splash img {
-      /* ~50% maior que um logo padrão, mas responsivo */
       width: min(330px, 70vw);
       display: block;
       filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.9));
@@ -97,12 +101,12 @@
       position: fixed;
       inset: -40%;
       background:
-        radial-gradient(circle at 20% 10%, rgba(255, 230, 150, 0.50), transparent 55%),
-        radial-gradient(circle at 80% 20%, rgba(255, 220, 120, 0.36), transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(8, 4, 20, 0.98), transparent 55%);
+        radial-gradient(circle at 20% 10%, rgba(255, 240, 185, 0.70), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(255, 230, 150, 0.48), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(8, 4, 25, 0.98), transparent 55%);
       filter: blur(40px);
       opacity: 0.9;
-      z-index: -2;
+      z-index: -3;
       animation: floatGlow 18s ease-in-out infinite alternate;
     }
 
@@ -115,6 +119,28 @@
       }
     }
 
+    /* Partículas douradas (efeito poeira de ouro) */
+    .gold-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      mix-blend-mode: screen;
+      background-image: radial-gradient(circle, rgba(255, 248, 206, 0.8) 0, rgba(255, 248, 206, 0) 60%);
+      background-size: 3px 3px;
+      opacity: 0.22;
+      animation: particlesMove 60s linear infinite;
+    }
+
+    @keyframes particlesMove {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 600px 420px;
+      }
+    }
+
     .noise-overlay {
       position: fixed;
       inset: 0;
@@ -122,7 +148,7 @@
       mix-blend-mode: soft-light;
       opacity: 0.35;
       pointer-events: none;
-      z-index: -1;
+      z-index: -2;
     }
 
     main {
@@ -192,15 +218,15 @@
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
       gap: 28px;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .hero-main {
       padding: 28px 26px;
       border-radius: var(--radius-xl);
       background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 45%),
-        radial-gradient(circle at bottom right, rgba(3, 0, 12, 0.96), rgba(0, 0, 0, 0.98));
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(3, 0, 18, 0.96), rgba(0, 0, 0, 0.98));
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-soft);
       position: relative;
@@ -215,7 +241,7 @@
         radial-gradient(circle at 0 0, var(--gold-soft), transparent 60%),
         radial-gradient(circle at 100% 100%, rgba(207, 163, 0, 0.22), transparent 55%);
       mix-blend-mode: screen;
-      opacity: 0.7;
+      opacity: 0.75;
       pointer-events: none;
     }
 
@@ -254,6 +280,8 @@
       font-size: 0.98rem;
       color: var(--text-soft);
       line-height: 1.5;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-cta-row {
@@ -269,7 +297,7 @@
       padding: 12px 28px;
       border-radius: var(--radius-pill);
       border: none;
-      background: linear-gradient(135deg, var(--gold), #ffeb94);
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
       color: #3d2800;
       font-weight: 700;
       font-size: 0.98rem;
@@ -341,7 +369,7 @@
       padding: 6px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(5, 3, 12, 0.98);
+      background: rgba(5, 3, 18, 0.98);
       color: var(--text-soft);
       white-space: nowrap;
     }
@@ -491,7 +519,7 @@
       padding: 6px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(5, 3, 12, 0.98);
+      background: rgba(5, 3, 18, 0.98);
       color: var(--text-soft);
     }
 
@@ -557,23 +585,98 @@
       color: var(--text-main);
     }
 
-    /* Rodapé */
-    footer {
-      margin-top: 18px;
-      padding: 16px 12px 20px;
+    /* Seção Em breve na cozinha */
+    .soon-section {
+      margin-top: 24px;
+    }
+
+    .soon-intro {
+      max-width: 640px;
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .soon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .soon-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 10px 10px 14px;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.78rem;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .soon-image-wrapper {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .soon-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+
+    .soon-card:hover .soon-image {
+      transform: scale(1.06);
+    }
+
+    .soon-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
       color: rgba(245, 236, 217, 0.9);
     }
 
+    .soon-name {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .soon-desc {
+      font-size: 0.84rem;
+      color: var(--text-soft);
+    }
+
+    /* Rodapé */
+    footer {
+      margin-top: 28px;
+      padding: 18px 12px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: rgba(245, 236, 217, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-left,
     .footer-right {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-sep-inline {
+      margin: 0 4px;
+      opacity: 0.7;
     }
 
     .footer-link {
@@ -581,6 +684,13 @@
       color: var(--gold);
       font-weight: 500;
       border-bottom: 1px dotted var(--gold);
+    }
+
+    .footer-inline-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
     }
 
     .footer-dot {
@@ -594,6 +704,9 @@
     @media (max-width: 960px) {
       .rooftop-wrapper {
         grid-template-columns: minmax(0, 1.1fr);
+      }
+      .soon-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -624,6 +737,12 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .soon-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     @media (max-width: 520px) {
       .hero-main {
         padding: 22px 18px;
@@ -647,6 +766,7 @@
   </div>
 
   <div class="gradient-orbit"></div>
+  <div class="gold-particles"></div>
   <div class="noise-overlay"></div>
 
   <main>
@@ -726,6 +846,22 @@
               </span>
             </div>
           </div>
+        </div>
+
+        <!-- NOVO CARD: ÁREA INTERNA DO BAR -->
+        <div class="card">
+          <div class="card-title">Área interna do bar</div>
+          <div class="card-main">Luz baixa, madeira, ferro e muito som.</div>
+          <div class="pill-row">
+            <span class="pill">Palco para bandas & voz e violão</span>
+            <span class="pill">Ambiente climatizado</span>
+            <span class="pill">Iluminação cênica em ouro</span>
+            <span class="pill">Telão para lutas e grandes eventos</span>
+          </div>
+          <p class="timeline">
+            Um salão pensado para quem gosta de mesa cheia, risada alta e noites que terminam mais tarde
+            do que o planejado.
+          </p>
         </div>
       </aside>
     </section>
@@ -816,21 +952,122 @@
       </div>
     </section>
 
+    <!-- SEÇÃO EM BREVE – PRATOS -->
+    <section class="section soon-section" aria-labelledby="soon-title-section">
+      <div class="section-header">
+        <h2 id="soon-title-section" class="section-title">Em breve na cozinha</h2>
+        <div class="section-tag">Cortes, massas, burgers & boteco em versão Babilônia</div>
+      </div>
+
+      <p class="soon-intro">
+        O cardápio está em fase final de testes. Enquanto os chefs queimam a cabeça e a chapa, você já
+        pode ter uma ideia do que vem por aí: pratos pensados para acompanhar noites longas, bons drinks
+        e muita música.
+      </p>
+
+      <div class="soon-grid">
+        <article class="soon-card">
+          <div class="soon-image-wrapper">
+            <img
+              class="soon-image"
+              src="https://images.unsplash.com/photo-1604908176997-1251884b08a3?q=80&w=800"
+              alt="Hambúrguer artesanal com fritas"
+            />
+          </div>
+          <div class="soon-label">Burgers & grill</div>
+          <div class="soon-name">Burger Babilônia Prime</div>
+          <div class="soon-desc">
+            Blend exclusivo, queijo derretendo, pão selado na chapa, bacon crocante e um molho que
+            não vai aparecer em outro lugar.
+          </div>
+        </article>
+
+        <article class="soon-card">
+          <div class="soon-image-wrapper">
+            <img
+              class="soon-image"
+              src="https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=800"
+              alt="Tábuas de frios e charcutaria"
+            />
+          </div>
+          <div class="soon-label">Delicatessen</div>
+          <div class="soon-name">Tábua Babylon Signature</div>
+          <div class="soon-desc">
+            Defumados, queijos, pães especiais e pequenos achados da charcutaria para dividir na mesa —
+            ou não dividir.
+          </div>
+        </article>
+
+        <article class="soon-card">
+          <div class="soon-image-wrapper">
+            <img
+              class="soon-image"
+              src="https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=800"
+              alt="Prato de massa com molho e vinho"
+            />
+          </div>
+          <div class="soon-label">Pratos & noite</div>
+          <div class="soon-name">Massa da Casa · Late Night</div>
+          <div class="soon-desc">
+            Massa fresca, molho encorpado e toques de brasa, pensados para aquela fome da madrugada
+            depois do último show.
+          </div>
+        </article>
+      </div>
+    </section>
+
     <footer>
       <div class="footer-left">
-        <span>© Babylon BSB · Samambaia · Brasília · DF</span>
+        <div>
+          © Babylon BSB · Samambaia · Brasília · DF
+        </div>
+        <div>
+          Endereço:
+          <span class="footer-sep-inline">•</span>
+          QN 303 Conjunto 04 Loja 04, Samambaia Sul
+        </div>
+        <div>
+          Horário previsto de funcionamento: 18h às 02h
+          <span class="footer-sep-inline">·</span>
+          (poderá sofrer ajustes na inauguração)
+        </div>
       </div>
+
       <div class="footer-right">
-        <span>Siga os bastidores:</span>
-        <span class="footer-dot"></span>
-        <a
-          class="footer-link"
-          href="https://instagram.com/babylon.bsb"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @babylon.bsb
-        </a>
+        <div class="footer-inline-links">
+          <span>Siga os bastidores e links oficiais:</span>
+        </div>
+        <div class="footer-inline-links">
+          <span class="footer-dot"></span>
+          <a
+            class="footer-link"
+            href="https://instagram.com/babylon.bsb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @babylon.bsb
+          </a>
+          <span class="footer-sep-inline">•</span>
+          <a
+            class="footer-link"
+            href="https://linktr.ee/babylon.bsb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            linktr.ee/babylon.bsb
+          </a>
+        </div>
+        <div class="footer-inline-links">
+          <span class="footer-dot"></span>
+          <a
+            class="footer-link"
+            href="https://waze.com/ul?q=QN%20303%20Conjunto%2004%20Loja%2004%20Samambaia%20Sul"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir rota no Waze
+          </a>
+        </div>
       </div>
     </footer>
   </main>
