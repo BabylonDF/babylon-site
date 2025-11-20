@@ -1,279 +1,847 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <title>Babylon BSB – Delicatessen, Grill & Música ao Vivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Babylon BSB</title>
-
+  <meta
+    name="description"
+    content="Babylon BSB – Delicatessen, grill, rooftop e música ao vivo em Samambaia. Em breve, a casa mais comentada de Brasília."
+  />
   <style>
-    /* ---------------------------------------------- */
-    /* --------------- ESTILO GERAL ----------------- */
-    /* ---------------------------------------------- */
+    :root {
+      /* Paleta com base na logo, focada em OURO (sem cara de cobre) */
+      --bg-deep: #050308;          /* fundo quase preto, neutro */
+      --bg-navy: #0b0913;          /* roxo/azul bem escuro, combina com a logo */
+      --bg-teal: #1c1428;          /* tom escuro neutro, sem marrom/cobre */
+      --gold: #f2c94c;             /* dourado principal (mais ouro, menos cobre) */
+      --gold-soft: rgba(242, 201, 76, 0.20);
+      --accent: #f2c94c;
+      --accent2: #cfa300;
+      --text-main: #ffffff;
+      --text-soft: #f5ecd9;
+      --card-bg: rgba(5, 3, 12, 0.96);
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.8);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      /* Fundo dourado (ouro), sem tom cobre */
-      background: radial-gradient(circle at center,
-                  #FFEEA9 0%,
-                  #FFD857 30%,
-                  #F3C13A 55%,
-                  #C89A1A 80%,
-                  #8C6C12 100%);
-      color: #ffffff;
-      text-align: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+
+      /* Fundo escuro com halos DOURADOS, sem marrom/cobre */
+      background:
+        radial-gradient(circle at top,
+          rgba(242, 201, 76, 0.42),
+          transparent 58%
+        ),
+        radial-gradient(circle at 30% 80%,
+          rgba(255, 235, 160, 0.26),
+          transparent 72%
+        ),
+        radial-gradient(circle at bottom,
+          var(--bg-deep),
+          #000000
+        );
+      background-attachment: fixed;
       overflow-x: hidden;
     }
 
-    /* ---------------------------------------------- */
-    /* --------------- PRELOADER --------------------- */
-    /* ---------------------------------------------- */
+    /* LOGO SPLASH – maior, dourada, responsiva */
+    .logo-splash {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      transition:
+        top 0.9s ease,
+        left 0.9s ease,
+        transform 0.9s ease,
+        opacity 0.9s ease;
+    }
 
-    #preloader {
+    .logo-splash img {
+      /* ~50% maior que um logo padrão, mas responsivo */
+      width: min(330px, 70vw);
+      display: block;
+      filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.9));
+      transition:
+        width 0.9s ease,
+        filter 0.9s ease;
+    }
+
+    /* Quando a página termina de carregar, a logo vai para o canto */
+    body.loaded .logo-splash {
+      top: 22px;
+      left: 18px;
+      transform: translate(0, 0);
+    }
+
+    body.loaded .logo-splash img {
+      width: min(110px, 26vw);
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.9));
+    }
+
+    /* Fundo animado em dourado suave */
+    .gradient-orbit {
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 230, 150, 0.50), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(255, 220, 120, 0.36), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(8, 4, 20, 0.98), transparent 55%);
+      filter: blur(40px);
+      opacity: 0.9;
+      z-index: -2;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGlow {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        transform: translate3d(0, -40px, 0) scale(1.06);
+      }
+    }
+
+    .noise-overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center,
-                  #FFEEA9 0%,
-                  #FFD857 30%,
-                  #F3C13A 55%,
-                  #C89A1A 80%,
-                  #8C6C12 100%);
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      mix-blend-mode: soft-light;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 32px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      z-index: 10000;
+      gap: 16px;
     }
 
-    #preloader img {
-      width: 340px;
-      max-width: 70vw;
-      animation: logoIntro 3.2s ease-in-out forwards;
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      /* espaço para a logo que vai para o canto */
+      margin-left: 120px;
     }
 
-    @keyframes logoIntro {
-      0%   { opacity: 0; transform: scale(0.2); }
-      30%  { opacity: 1; transform: scale(1.15); }
-      65%  { opacity: 1; transform: scale(1.0); }
-      100% { opacity: 0; transform: scale(0.55); }
+    .brand-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      opacity: 0.9;
     }
 
-    /* ---------------------------------------------- */
-    /* --------------- LOGO FIXA NO TOPO ------------- */
-    /* ---------------------------------------------- */
-
-    #logo-fixed {
-      position: fixed;
-      top: 18px;
-      left: 18px;
-      width: 110px;
-      opacity: 0;
-      transform: translateY(-30px);
-      transition: opacity 1s ease, transform 1s ease;
-      z-index: 9999;
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    #logo-fixed.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .tag-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.65), rgba(255, 255, 255, 0.06));
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* ---------------------------------------------- */
-    /* --------------- SEÇÃO PRINCIPAL --------------- */
-    /* ---------------------------------------------- */
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 20px var(--gold-soft);
+    }
 
+    /* Hero principal */
     .hero {
-      margin-top: 150px;
-      padding: 20px;
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 28px;
+      align-items: center;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      text-shadow: 0 0 14px rgba(0,0,0,0.7);
-      letter-spacing: 2px;
-    }
-
-    .subtitle {
-      font-size: 1.3rem;
-      margin-top: 0;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-    }
-
-    .hero-text {
-      margin-top: 25px;
-      font-size: 1.1rem;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5rem;
-      text-shadow: 0 0 8px rgba(0,0,0,0.6);
-    }
-
-    /* ---------------------------------------------- */
-    /* --------------- BOTÃO WHATSAPP ---------------- */
-    /* ---------------------------------------------- */
-
-    .whatsapp-btn {
-      margin-top: 35px;
-      background: #25D366;
-      color: #000;
-      font-weight: 700;
-      padding: 15px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1.15rem;
-      display: inline-block;
-      box-shadow: 0 0 14px rgba(0,0,0,0.6);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .whatsapp-btn:hover {
-      transform: scale(1.07) translateY(-2px);
-      box-shadow: 0 0 20px rgba(0,0,0,0.85);
-    }
-
-    /* ---------------------------------------------- */
-    /* --------------- CARD ROOFTOP ------------------ */
-    /* ---------------------------------------------- */
-
-    .card {
-      width: 90%;
-      max-width: 780px;
-      margin: 60px auto 50px;
-      background: rgba(0,0,0,0.55);
-      border-radius: 20px;
-      padding-bottom: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
+    .hero-main {
+      padding: 28px 26px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(3, 0, 12, 0.96), rgba(0, 0, 0, 0.98));
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
       overflow: hidden;
     }
 
-    .card img {
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, var(--gold-soft), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(207, 163, 0, 0.22), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-kicker {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hero-subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-text {
+      text-align: center;
+      margin: 0 auto 22px;
+      max-width: 520px;
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-whats {
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: linear-gradient(135deg, var(--gold), #ffeb94);
+      color: #3d2800;
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85), 0 0 30px rgba(242, 201, 76, 0.4);
+      transform: translateY(0);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+    }
+
+    .cta-whats span.icon {
+      font-size: 1.1rem;
+    }
+
+    .cta-whats:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 36px rgba(242, 201, 76, 0.9);
+      filter: brightness(1.04);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: rgba(245, 236, 217, 0.9);
+    }
+
+    /* Coluna lateral */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 16px 18px;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(18px);
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .card-main {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.76rem;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(5, 3, 12, 0.98);
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .timeline {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      line-height: 1.4;
+    }
+
+    .timeline strong {
+      color: var(--gold);
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .highlight {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.96));
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .highlight-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      color: rgba(245, 236, 217, 0.9);
+    }
+
+    .highlight-main {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Seção Rooftop */
+    .section {
+      margin-top: 12px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .section-tag {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(245, 236, 217, 0.9);
+      opacity: 0.9;
+    }
+
+    .rooftop-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .rooftop-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 22px 22px 20px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rooftop-title {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .rooftop-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .rooftop-text {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+    }
+
+    .rooftop-list {
+      list-style: none;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      padding-left: 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .rooftop-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .rooftop-list-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--gold);
+      margin-top: 6px;
+      box-shadow: 0 0 12px var(--gold-soft);
+    }
+
+    .rooftop-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .rooftop-badge {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(5, 3, 12, 0.98);
+      color: var(--text-soft);
+    }
+
+    .rooftop-cta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .rooftop-cta-note {
+      font-size: 0.8rem;
+      color: rgba(245, 236, 217, 0.9);
+    }
+
+    .rooftop-media {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      min-height: 220px;
+      background:
+        radial-gradient(circle at top left, rgba(242, 201, 76, 0.22), transparent 55%),
+        radial-gradient(circle at bottom, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 1));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.95);
+    }
+
+    .rooftop-image {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      border-radius: 20px 20px 0 0;
+      opacity: 0.95;
     }
 
-    .card h2 {
+    .rooftop-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent 60%);
+    }
+
+    .rooftop-media-label {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .rooftop-media-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(245, 236, 217, 0.95);
+    }
+
+    .rooftop-media-main {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Rodapé */
+    footer {
       margin-top: 18px;
-      font-size: 2rem;
-      text-shadow: 0 0 10px rgba(0,0,0,0.75);
+      padding: 16px 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: rgba(245, 236, 217, 0.9);
     }
 
-    .card p {
-      width: 90%;
-      margin: 10px auto 0;
-      font-size: 1.05rem;
-      line-height: 1.6rem;
-      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    /* ---------------------------------------------- */
-    /* --------------- RESPONSIVIDADE ---------------- */
-    /* ---------------------------------------------- */
+    .footer-link {
+      text-decoration: none;
+      color: var(--gold);
+      font-weight: 500;
+      border-bottom: 1px dotted var(--gold);
+    }
 
-    @media (max-width: 768px) {
+    .footer-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(245, 236, 217, 0.8);
+    }
+
+    /* Responsivo */
+    @media (max-width: 960px) {
+      .rooftop-wrapper {
+        grid-template-columns: minmax(0, 1.1fr);
+      }
+    }
+
+    @media (max-width: 840px) {
+      main {
+        padding-top: 24px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .brand {
+        margin-left: 0;
+        margin-top: 110px; /* espaço para a logo no mobile */
+      }
       .hero {
-        margin-top: 130px;
+        grid-template-columns: minmax(0, 1fr);
       }
-
-      .hero h1 {
-        font-size: 2.4rem;
+      .hero-main {
+        order: 1;
       }
-
-      .subtitle {
-        font-size: 1.15rem;
+      .hero-side {
+        order: 2;
       }
-
-      #logo-fixed {
-        width: 90px;
-        top: 14px;
-        left: 14px;
-      }
-
-      .card h2 {
-        font-size: 1.7rem;
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 480px) {
-      .hero {
-        margin-top: 120px;
+    @media (max-width: 520px) {
+      .hero-main {
+        padding: 22px 18px;
       }
-
-      .hero h1 {
-        font-size: 2.1rem;
+      .hero-title {
+        letter-spacing: 0.22em;
       }
-
-      .subtitle {
-        font-size: 1rem;
-      }
-
       .hero-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
-
-      #logo-fixed {
-        width: 80px;
+      .highlights {
+        grid-template-columns: 1fr;
       }
     }
   </style>
-
-  <script>
-    // Controle do preloader e exibição da logo fixa
-    window.onload = function () {
-      setTimeout(function () {
-        var preloader = document.getElementById("preloader");
-        preloader.style.display = "none";
-
-        var logoFixed = document.getElementById("logo-fixed");
-        logoFixed.classList.add("visible");
-      }, 3200); // tempo em ms que a logo fica no centro
-    };
-  </script>
 </head>
 <body>
-
-  <!-- PRELOADER COM A LOGO NO CENTRO -->
-  <div id="preloader">
-    <img src="logo.png" alt="Logo Babylon Delicatessen" />
+  <!-- LOGO SPLASH (usa logo.png na raiz do projeto) -->
+  <div class="logo-splash">
+    <img src="logo.png" alt="Logo Babylon BSB" />
   </div>
 
-  <!-- LOGO FIXA NO TOPO ESQUERDO APÓS O PRELOAD -->
-  <img id="logo-fixed" src="logo.png" alt="Logo Babylon" />
+  <div class="gradient-orbit"></div>
+  <div class="noise-overlay"></div>
 
-  <!-- SEÇÃO PRINCIPAL -->
-  <section class="hero">
-    <h1>BABYLON BSB</h1>
-    <p class="subtitle">Delicatessen · Música ao vivo · Experiências VIP</p>
+  <main>
+    <header>
+      <div class="brand">
+        <div class="brand-label">Samambaia · Brasília · DF</div>
+        <div class="brand-name">Babylon BSB</div>
+      </div>
+      <div class="tag-pill">
+        <div class="tag-dot"></div>
+        Pré-abertura · 2026
+      </div>
+    </header>
 
-    <p class="hero-text">
-      Do soft jazz ao rock, pop, samba, pagode e sertanejo —
-      com <strong>destaque especial para noites de House Music</strong>
-      embalando a casa mais comentada de Samambaia.
-    </p>
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-kicker">Em breve</div>
+        <h1 class="hero-title">Babylon BSB</h1>
+        <h2 class="hero-subtitle">Delicatessen · Grill · Música ao vivo</h2>
+        <p class="hero-text">
+          Em breve, a casa mais comentada de Samambaia. Uma experiência completa
+          de gastronomia, drinks autorais e música ao vivo em um ambiente inspirado
+          nas lendas e excessos da antiga Babilônia.
+        </p>
 
-    <a class="whatsapp-btn"
-       href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN"
-       target="_blank" rel="noopener noreferrer">
-      Entrar no Grupo VIP do Babylon
-    </a>
-  </section>
+        <div class="hero-cta-row">
+          <a
+            class="cta-whats"
+            href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="icon">💬</span>
+            <span>Entre para o Grupo VIP Babylon</span>
+          </a>
+          <p class="hero-note">
+            Receba novidades da inauguração, reservas exclusivas, pré-venda do Rooftop e eventos fechados.
+          </p>
+        </div>
+      </div>
 
-  <!-- CARD ROOFTOP VIP COM A IMAGEM roof.png -->
-  <section class="card">
-    <!-- IMPORTANTE: deixe o arquivo roof.png na mesma pasta do index.html -->
-    <img src="roof.png" alt="Vista noturna do Rooftop Babylon com jacuzzi e lareira" />
+      <aside class="hero-side">
+        <div class="card">
+          <div class="card-title">Experiência Babylon</div>
+          <div class="card-main">Muito além de um bar ou restaurante.</div>
+          <div class="pill-row">
+            <span class="pill">Carnes & grill na brasa</span>
+            <span class="pill">Delicatessen & charcutaria</span>
+            <span class="pill">Drinks autorais & clássicos</span>
+            <span class="pill">Line-up de música ao vivo</span>
+          </div>
+          <p class="timeline">
+            <strong>Fase atual:</strong> obras, montagem de cozinha, bar, palco e Rooftop.
+            <br />
+            <strong>Próximo passo:</strong> soft opening para convidados e lista VIP.
+          </p>
+        </div>
 
-    <h2>Babylon Rooftop VIP</h2>
-    <p>
-      Vista panorâmica da cidade, jacuzzi com borda de vidro em clima dourado,
-      churrasqueira premium e um cardápio diferenciado criado para experiências
-      exclusivas de até <strong>6 clientes VIP</strong>. Um rooftop pensado para
-      viver momentos que não existem em nenhum outro lugar de Samambaia.
-    </p>
-  </section>
+        <div class="card">
+          <div class="card-title">O que te espera</div>
+          <div class="highlights">
+            <div class="highlight">
+              <span class="highlight-label">Gastronomia</span>
+              <span class="highlight-main">Burgers, espetinhos, pizzas & comida de boteco</span>
+              <span>Receitas assinadas, defumações e escondidinhos autorais.</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-label">Drinks & bar</span>
+              <span class="highlight-main">Carta pensada para noites longas</span>
+              <span>Clássicos, releituras e coquetelaria criativa.</span>
+            </div>
+            <div class="highlight">
+              <span class="highlight-label">Música & noite</span>
+              <span class="highlight-main">
+                Do soft jazz ao rock, do pop ao samba e pagode, do sertanejo ao House — aqui, cada noite vira
+                uma experiência sonora completa.
+              </span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
 
+    <!-- SEÇÃO ROOFTOP -->
+    <section class="section" aria-labelledby="rooftop-title-section">
+      <div class="section-header">
+        <h2 id="rooftop-title-section" class="section-title">Experiência VIP · Babylon Rooftop</h2>
+        <div class="section-tag">Jacuzzi · Churrasqueira · Cardápio exclusivo</div>
+      </div>
+
+      <div class="rooftop-wrapper">
+        <div class="rooftop-card">
+          <div class="rooftop-subtitle">Acima da cidade</div>
+          <h3 class="rooftop-title">Rooftop com alma de Babilônia</h3>
+          <p class="rooftop-text">
+            O Babylon Rooftop é o espaço mais exclusivo da casa: uma área elevada, pensada para noites
+            intensas, experiências privadas e momentos que não se repetem.
+          </p>
+
+          <ul class="rooftop-list">
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Jacuzzi com borda de vidro</strong> e visual privilegiado — cenário perfeito para celebrar,
+                relaxar e brindar.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Churrasqueira privativa</strong> dedicada ao grupo, com cortes selecionados e preparo
+                sob medida.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                <strong>Cardápio diferenciado</strong>, criado apenas para o Rooftop: entradas, pratos e drinks
+                que não serão servidos no salão principal.
+              </span>
+            </li>
+            <li>
+              <span class="rooftop-list-bullet"></span>
+              <span>
+                Experiência pensada para até <strong>6 clientes VIPs</strong> por horário, garantindo exclusividade total.
+              </span>
+            </li>
+          </ul>
+
+          <div class="rooftop-badge-row">
+            <span class="rooftop-badge">Reserva antecipada obrigatória</span>
+            <span class="rooftop-badge">Pacote fechado comida + bebida</span>
+            <span class="rooftop-badge">Ideal para celebrações e reuniões privadas</span>
+          </div>
+
+          <div class="rooftop-cta">
+            <a
+              class="cta-whats"
+              href="https://chat.whatsapp.com/D0toSaDY9RN5pL5uhNN6kN"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="icon">🔥</span>
+              <span>Reservar interesse no Rooftop</span>
+            </a>
+            <p class="rooftop-cta-note">
+              Entre no Grupo VIP Babylon e seja avisado quando as primeiras datas forem abertas.
+            </p>
+          </div>
+        </div>
+
+        <div class="rooftop-media">
+          <!-- Usa a imagem local roof.png -->
+          <img
+            class="rooftop-image"
+            src="roof.png"
+            alt="Vista de rooftop noturno com jacuzzi iluminada e lareira"
+          />
+          <div class="rooftop-media-overlay"></div>
+          <div class="rooftop-media-label">
+            <div class="rooftop-media-tag">Preview conceitual</div>
+            <div class="rooftop-media-main">
+              Jacuzzi com borda de vidro, iluminação quente e clima de festa privada no topo da Babylon.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-left">
+        <span>© Babylon BSB · Samambaia · Brasília · DF</span>
+      </div>
+      <div class="footer-right">
+        <span>Siga os bastidores:</span>
+        <span class="footer-dot"></span>
+        <a
+          class="footer-link"
+          href="https://instagram.com/babylon.bsb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @babylon.bsb
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Quando a página terminar de carregar, a logo fica no centro por 2.2s e depois sobe
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.body.classList.add('loaded');
+      }, 2200); // 2200 ms = 2,2 segundos
+    });
+  </script>
 </body>
 </html>
