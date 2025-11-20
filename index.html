@@ -10,16 +10,19 @@
   />
   <style>
     :root {
-      --bg1: #1a0033;
-      --bg2: #ff00ff;
-      --bg3: #7b00ff;
-      --accent: #00ff99;
-      --accent-soft: rgba(0, 255, 153, 0.12);
+      /* Cores inspiradas na logo */
+      --bg-deep: #050814;            /* quase preto azulado */
+      --bg-navy: #001b2d;            /* azul escuro de fundo */
+      --bg-teal: #005c73;            /* folhas azul/verde */
+      --gold: #f2b632;               /* dourado do leão */
+      --gold-soft: rgba(242, 182, 50, 0.18);
+      --accent: #f2b632;
+      --accent2: #0f6a7a;            /* teal para detalhes */
       --text-main: #ffffff;
-      --text-soft: #e3d7ff;
-      --card-bg: rgba(10, 0, 40, 0.85);
+      --text-soft: #e5edf5;
+      --card-bg: rgba(2, 10, 22, 0.9);
       --border-soft: rgba(255, 255, 255, 0.08);
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
       --radius-xl: 24px;
       --radius-pill: 999px;
     }
@@ -34,11 +37,12 @@
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
-      background: radial-gradient(circle at top, #ff4bff 0, #3b0080 35%, #040014 100%);
+      background:
+        radial-gradient(circle at top, var(--bg-teal) 0, var(--bg-navy) 38%, var(--bg-deep) 100%);
       overflow-x: hidden;
     }
 
-    /* LOGO SPLASH – aparece no centro e depois vai para o canto superior esquerdo */
+    /* LOGO SPLASH – agora 50% maior e responsiva */
     .logo-splash {
       position: fixed;
       top: 50%;
@@ -53,36 +57,38 @@
     }
 
     .logo-splash img {
-      width: 220px;
+      /* antes era 220px → agora ~50% maior, com limite por viewport */
+      width: min(330px, 70vw);
       display: block;
-      filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.7));
+      filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.8));
       transition:
         width 0.9s ease,
         filter 0.9s ease;
     }
 
-    /* Quando a página terminar de carregar, a logo se move e reduz */
+    /* Quando a página termina de carregar, a logo vai para o canto */
     body.loaded .logo-splash {
-      top: 24px;
-      left: 20px;
+      top: 22px;
+      left: 18px;
       transform: translate(0, 0);
     }
 
     body.loaded .logo-splash img {
-      width: 90px;
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
+      /* versão reduzida também responsiva */
+      width: min(110px, 26vw);
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.8));
     }
 
-    /* Fundo animado */
+    /* Fundo animado em tons da logo */
     .gradient-orbit {
       position: fixed;
       inset: -40%;
       background:
-        radial-gradient(circle at 10% 0%, rgba(255, 0, 153, 0.45), transparent 55%),
-        radial-gradient(circle at 90% 10%, rgba(0, 255, 204, 0.35), transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(124, 77, 255, 0.6), transparent 55%);
+        radial-gradient(circle at 10% 0%, rgba(242, 182, 50, 0.35), transparent 55%),
+        radial-gradient(circle at 90% 15%, rgba(0, 92, 115, 0.35), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(0, 20, 40, 0.9), transparent 55%);
       filter: blur(30px);
-      opacity: 0.7;
+      opacity: 0.75;
       z-index: -2;
       animation: floatGlow 18s ease-in-out infinite alternate;
     }
@@ -127,7 +133,7 @@
       flex-direction: column;
       gap: 2px;
       /* espaço para a logo que vai para o canto */
-      margin-left: 110px;
+      margin-left: 120px;
     }
 
     .brand-label {
@@ -135,7 +141,7 @@
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--text-soft);
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     .brand-name {
@@ -149,7 +155,7 @@
       padding: 6px 14px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.18);
-      background: linear-gradient(120deg, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.04));
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.65), rgba(255, 255, 255, 0.06));
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
@@ -163,8 +169,8 @@
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 20px rgba(0, 255, 153, 0.7);
+      background: var(--gold);
+      box-shadow: 0 0 20px var(--gold-soft);
     }
 
     /* Hero principal */
@@ -179,8 +185,9 @@
     .hero-main {
       padding: 28px 26px;
       border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 45%),
-        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-soft);
       position: relative;
@@ -192,10 +199,10 @@
       position: absolute;
       inset: -40%;
       background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.14), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(0, 255, 204, 0.16), transparent 55%);
+        radial-gradient(circle at 0 0, var(--gold-soft), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 92, 115, 0.22), transparent 55%);
       mix-blend-mode: screen;
-      opacity: 0.6;
+      opacity: 0.7;
       pointer-events: none;
     }
 
@@ -203,7 +210,7 @@
       font-size: 0.88rem;
       text-transform: uppercase;
       letter-spacing: 0.24em;
-      color: var(--accent);
+      color: var(--gold);
       margin-bottom: 10px;
       position: relative;
       z-index: 1;
@@ -249,8 +256,8 @@
       padding: 12px 28px;
       border-radius: var(--radius-pill);
       border: none;
-      background: radial-gradient(circle at top, var(--accent), #11c16b);
-      color: #02120b;
+      background: linear-gradient(135deg, var(--gold), #ffdd7a);
+      color: #3d2800;
       font-weight: 700;
       font-size: 0.98rem;
       letter-spacing: 0.08em;
@@ -260,7 +267,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 153, 0.8);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7), 0 0 30px var(--gold-soft);
       transform: translateY(0);
       transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
     }
@@ -271,13 +278,13 @@
 
     .cta-whats:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75), 0 0 36px rgba(0, 255, 153, 0.95);
-      filter: brightness(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85), 0 0 36px rgba(242, 182, 50, 0.9);
+      filter: brightness(1.04);
     }
 
     .hero-note {
       font-size: 0.8rem;
-      color: rgba(227, 215, 255, 0.7);
+      color: rgba(229, 237, 245, 0.8);
     }
 
     /* Coluna lateral */
@@ -292,7 +299,7 @@
       border-radius: var(--radius-xl);
       border: 1px solid var(--border-soft);
       padding: 16px 18px;
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(18px);
     }
 
@@ -321,7 +328,7 @@
       padding: 6px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(8, 0, 30, 0.7);
+      background: rgba(2, 14, 26, 0.9);
       color: var(--text-soft);
       white-space: nowrap;
     }
@@ -334,7 +341,7 @@
     }
 
     .timeline strong {
-      color: var(--accent);
+      color: var(--gold);
     }
 
     .highlights {
@@ -347,7 +354,7 @@
     .highlight {
       border-radius: 18px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.85));
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.9));
       padding: 10px 12px;
       font-size: 0.82rem;
       color: var(--text-soft);
@@ -360,7 +367,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-size: 0.7rem;
-      color: rgba(227, 215, 255, 0.75);
+      color: rgba(229, 237, 245, 0.85);
     }
 
     .highlight-main {
@@ -392,7 +399,7 @@
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: rgba(227, 215, 255, 0.7);
+      color: rgba(229, 237, 245, 0.8);
       opacity: 0.9;
     }
 
@@ -408,7 +415,7 @@
       border-radius: var(--radius-xl);
       border: 1px solid rgba(255, 255, 255, 0.16);
       padding: 22px 22px 20px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
@@ -454,9 +461,9 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--gold);
       margin-top: 6px;
-      box-shadow: 0 0 12px rgba(0, 255, 153, 0.7);
+      box-shadow: 0 0 12px var(--gold-soft);
     }
 
     .rooftop-badge-row {
@@ -471,7 +478,7 @@
       padding: 6px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(8, 0, 30, 0.85);
+      background: rgba(2, 14, 26, 0.95);
       color: var(--text-soft);
     }
 
@@ -485,7 +492,7 @@
 
     .rooftop-cta-note {
       font-size: 0.8rem;
-      color: rgba(227, 215, 255, 0.75);
+      color: rgba(229, 237, 245, 0.8);
     }
 
     .rooftop-media {
@@ -493,10 +500,11 @@
       overflow: hidden;
       position: relative;
       min-height: 220px;
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 55%),
-        radial-gradient(circle at bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85);
+      background:
+        radial-gradient(circle at top left, rgba(242, 182, 50, 0.18), transparent 55%),
+        radial-gradient(circle at bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 1));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
     }
 
     .rooftop-image {
@@ -510,7 +518,7 @@
     .rooftop-media-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 60%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent 60%);
     }
 
     .rooftop-media-label {
@@ -527,7 +535,7 @@
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: rgba(227, 215, 255, 0.9);
+      color: rgba(229, 237, 245, 0.9);
     }
 
     .rooftop-media-main {
@@ -545,11 +553,7 @@
       align-items: center;
       gap: 12px;
       font-size: 0.78rem;
-      color: rgba(227, 215, 255, 0.7);
-    }
-
-    .footer-left span {
-      opacity: 0.85;
+      color: rgba(229, 237, 245, 0.78);
     }
 
     .footer-right {
@@ -561,16 +565,16 @@
 
     .footer-link {
       text-decoration: none;
-      color: var(--accent);
+      color: var(--gold);
       font-weight: 500;
-      border-bottom: 1px dotted rgba(0, 255, 153, 0.7);
+      border-bottom: 1px dotted var(--gold);
     }
 
     .footer-dot {
       width: 4px;
       height: 4px;
       border-radius: 999px;
-      background: rgba(227, 215, 255, 0.6);
+      background: rgba(229, 237, 245, 0.7);
     }
 
     /* Responsivo */
@@ -590,7 +594,7 @@
       }
       .brand {
         margin-left: 0;
-        margin-top: 100px; /* espaço para a logo no mobile */
+        margin-top: 110px; /* espaço para a logo no mobile */
       }
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -791,7 +795,7 @@
           <div class="rooftop-media-label">
             <div class="rooftop-media-tag">Preview conceitual</div>
             <div class="rooftop-media-main">
-              Jacuzzi com borda de vidro, iluminação neon e clima de festa privada no topo da Babylon.
+              Jacuzzi com borda de vidro, iluminação quente e clima de festa privada no topo da Babylon.
             </div>
           </div>
         </div>
@@ -820,7 +824,6 @@
   <script>
     // Quando a página terminar de carregar, ativa a animação da logo
     window.addEventListener('load', function () {
-      // pequeno delay só pra dar uma sensação de "entrada"
       setTimeout(function () {
         document.body.classList.add('loaded');
       }, 300);
