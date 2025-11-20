@@ -38,6 +38,41 @@
       overflow-x: hidden;
     }
 
+    /* LOGO SPLASH – aparece no centro e depois vai para o canto superior esquerdo */
+    .logo-splash {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      transition:
+        top 0.9s ease,
+        left 0.9s ease,
+        transform 0.9s ease,
+        opacity 0.9s ease;
+    }
+
+    .logo-splash img {
+      width: 220px;
+      display: block;
+      filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.7));
+      transition:
+        width 0.9s ease,
+        filter 0.9s ease;
+    }
+
+    /* Quando a página terminar de carregar, a logo se move e reduz */
+    body.loaded .logo-splash {
+      top: 24px;
+      left: 20px;
+      transform: translate(0, 0);
+    }
+
+    body.loaded .logo-splash img {
+      width: 90px;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.7));
+    }
+
     /* Fundo animado */
     .gradient-orbit {
       position: fixed;
@@ -91,6 +126,8 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
+      /* espaço para a logo que vai para o canto */
+      margin-left: 110px;
     }
 
     .brand-label {
@@ -551,6 +588,10 @@
         flex-direction: column;
         align-items: flex-start;
       }
+      .brand {
+        margin-left: 0;
+        margin-top: 100px; /* espaço para a logo no mobile */
+      }
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -583,6 +624,11 @@
   </style>
 </head>
 <body>
+  <!-- LOGO SPLASH (usa logo.png na raiz do projeto) -->
+  <div class="logo-splash">
+    <img src="logo.png" alt="Logo Babylon BSB" />
+  </div>
+
   <div class="gradient-orbit"></div>
   <div class="noise-overlay"></div>
 
@@ -770,5 +816,15 @@
       </div>
     </footer>
   </main>
+
+  <script>
+    // Quando a página terminar de carregar, ativa a animação da logo
+    window.addEventListener('load', function () {
+      // pequeno delay só pra dar uma sensação de "entrada"
+      setTimeout(function () {
+        document.body.classList.add('loaded');
+      }, 300);
+    });
+  </script>
 </body>
 </html>
