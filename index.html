@@ -9,12 +9,12 @@
   <!-- ===================== SEO BABYLON BSB ===================== -->
 
   <!-- TÍTULO PRINCIPAL PARA GOOGLE -->
-  <title>Babylon BSB – Delicatessen, Grill, Rooftop & Música ao Vivo em Samambaia</title>
+  <title>Babylon BSB – Delicatessen, Rooftop & Música ao Vivo em Samambaia</title>
 
   <!-- DESCRIÇÃO (META DESCRIPTION) -->
   <meta
     name="description"
-    content="Babylon BSB – Delicatessen, grill, rooftop com jacuzzi, churrasqueira, área VIP, música ao vivo e gastronomia especial em Samambaia. Uma experiência inspirada nas lendas da antiga Babilônia. Em breve a casa mais comentada de Brasília."
+    content="Babylon BSB – carnes na brasa, pizzas, comida de boteco, charcutaria, rooftop com jacuzzi, área VIP e música ao vivo em Samambaia. Uma experiência completa de bar e restaurante inspirada na antiga Babilônia."
   />
 
   <!-- PALAVRAS-CHAVE (SEO OPCIONAL, MAS ÚTIL EM META/WHATSAPP/BING) -->
@@ -22,26 +22,32 @@
     name="keywords"
     content="
       Babylon BSB, bar Samambaia, restaurante Samambaia, rooftop Brasília, rooftop DF,
-      delicatessen Brasília, grill DF, música ao vivo Samambaia, Babylon Rooftop,
+      delicatessen Brasília, música ao vivo Samambaia, Babylon Rooftop,
       bar premium Brasília, rooftop com jacuzzi, restaurante com área VIP,
       churrasco na brasa DF, drinks autorais Brasília, barbecue Brasília,
       melhor bar de Samambaia, área VIP Samambaia, Babylon Delicatessen,
       hamburguer artesanal Samambaia, comida de boteco Brasília, pizzaria Samambaia,
-      bar com ambiente bonito, lugar para aniversários Brasília
+      bar com música ao vivo, lugar para aniversários Brasília
     "
   />
 
   <!-- INDEX / FOLLOW -->
-  <meta name="robots" content="index, follow" />
+  <meta
+    name="robots"
+    content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+  />
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="/logo.png" />
 
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://www.babylonbsb.com.br/" />
+
   <!-- =============== OPEN GRAPH (WhatsApp, Facebook, Instagram) =============== -->
-  <meta property="og:title" content="Babylon BSB – Delicatessen, Grill & Música ao Vivo" />
+  <meta property="og:title" content="Babylon BSB – Delicatessen & Música ao Vivo" />
   <meta
     property="og:description"
-    content="Delicatessen, grill, rooftop com jacuzzi e música ao vivo em Samambaia. Em breve, a casa mais comentada de Brasília."
+    content="Carnes na brasa, pizzas, comida de boteco, charcutaria e rooftop com jacuzzi em Samambaia. A Babylon nasce para ser referência em Brasília."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.babylonbsb.com.br/" />
@@ -53,10 +59,10 @@
 
   <!-- ========================= TWITTER CARD ========================= -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Babylon BSB – Grill, Rooftop & Música ao Vivo" />
+  <meta name="twitter:title" content="Babylon BSB – Rooftop & Música ao Vivo" />
   <meta
     name="twitter:description"
-    content="A nova casa mais comentada de Samambaia. Gastronomia, drinks, música e rooftop VIP."
+    content="Delicatessen, carnes na brasa, pizzas, comida de boteco e rooftop VIP com jacuzzi em Samambaia."
   />
   <meta name="twitter:image" content="https://www.babylonbsb.com.br/logo.png" />
 
@@ -85,22 +91,19 @@
     "priceRange": "$$",
     "servesCuisine": [
       "Delicatessen",
-      "Grill",
       "Pizzas",
       "Burgers",
       "Esfiras",
       "Escondidinho",
       "Charcutaria",
-      "Comida de Boteco",
-      "Jacuzzi",
-      "VIP"
+      "Comida de Boteco"
     ],
     "menu": "",
     "sameAs": [
       "https://instagram.com/babylon.bsb",
       "https://linktr.ee/babylon.bsb"
     ],
-    "description": "Delicatessen, grill, rooftop VIP com jacuzzi, churrasqueira e música ao vivo em Samambaia.",
+    "description": "Delicatessen, carnes na brasa, pizzas, charcutaria, comida de boteco, rooftop VIP com jacuzzi, churrasqueira e música ao vivo em Samambaia.",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -120,16 +123,16 @@
 
   <style>
     :root {
-      /* Paleta focada em OURO */
-      --bg-deep: #050301;            /* fundo bem escuro */
-      --bg-gold-deep: #190f02;       /* marrom bem fechado, quase preto */
-      --bg-gold-soft: #3c2605;       /* dourado queimado suave */
-      --gold: #f8d26a;               /* dourado principal mais intenso */
-      --gold-soft: rgba(248, 210, 106, 0.22);
-      --accent: #f8d26a;
-      --accent2: #b88a1f;
+      /* Paleta focada em OURO MAIS REAL */
+      --bg-deep: #070401;
+      --bg-gold-deep: #221405;
+      --bg-gold-soft: #5c3b07;
+      --gold: #ffd700;
+      --gold-soft: rgba(255, 215, 0, 0.22);
+      --accent: #ffde3b;
+      --accent2: #c79a1b;
       --text-main: #ffffff;
-      --text-soft: #f7ecd4;
+      --text-soft: #f9f0d2;
       --card-bg: rgba(10, 6, 0, 0.96);
       --border-soft: rgba(255, 255, 255, 0.12);
       --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.85);
@@ -148,16 +151,14 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
       scroll-behavior: smooth;
-      /* Fundo dourado, sem tom de cobre */
       background:
-        radial-gradient(circle at top, rgba(248, 210, 106, 0.35), transparent 55%),
-        radial-gradient(circle at 30% 80%, rgba(255, 235, 180, 0.18), transparent 70%),
-        radial-gradient(circle at bottom, var(--bg-gold-deep), #000000);
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.42), transparent 55%),
+        radial-gradient(circle at 30% 80%, rgba(255, 236, 179, 0.24), transparent 70%),
+        radial-gradient(circle at bottom, #120903, #000000);
       background-attachment: fixed;
       overflow-x: hidden;
     }
 
-    /* LOGO SPLASH – maior, dourada, responsiva */
     .logo-splash {
       position: fixed;
       top: 50%;
@@ -172,8 +173,7 @@
     }
 
     .logo-splash img {
-      /* 50% maior, porém responsiva */
-      width: min(330px, 70vw);
+      width: min(340px, 70vw);
       display: block;
       filter: drop-shadow(0 22px 48px rgba(0, 0, 0, 0.9));
       transition:
@@ -181,7 +181,6 @@
         filter 0.9s ease;
     }
 
-    /* Quando a página termina de carregar, a logo vai para o canto */
     body.loaded .logo-splash {
       top: 22px;
       left: 18px;
@@ -189,17 +188,16 @@
     }
 
     body.loaded .logo-splash img {
-      width: min(110px, 26vw);
+      width: min(120px, 26vw);
       filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.9));
     }
 
-    /* Fundo animado em dourado */
     .gradient-orbit {
       position: fixed;
       inset: -40%;
       background:
-        radial-gradient(circle at 20% 10%, rgba(248, 210, 106, 0.55), transparent 55%),
-        radial-gradient(circle at 80% 20%, rgba(255, 220, 140, 0.42), transparent 60%),
+        radial-gradient(circle at 20% 10%, rgba(255, 215, 0, 0.55), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(255, 230, 140, 0.46), transparent 60%),
         radial-gradient(circle at 50% 100%, rgba(30, 16, 0, 0.98), transparent 55%);
       filter: blur(40px);
       opacity: 0.9;
@@ -216,20 +214,19 @@
       }
     }
 
-    /* Partículas douradas flutuando */
     .gold-particles {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: -1;
       background-image:
-        radial-gradient(circle, rgba(248, 210, 106, 0.55) 1px, transparent 1px),
-        radial-gradient(circle, rgba(248, 210, 106, 0.35) 1px, transparent 1px);
+        radial-gradient(circle, rgba(255, 215, 0, 0.6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255, 215, 0, 0.35) 1px, transparent 1px);
       background-size: 220px 220px, 320px 320px;
       background-position: 0 0, 80px 120px;
       mix-blend-mode: screen;
       animation: particlesDrift 32s linear infinite;
-      opacity: 0.55;
+      opacity: 0.6;
     }
 
     @keyframes particlesDrift {
@@ -271,12 +268,11 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      /* espaço para a logo que vai para o canto */
       margin-left: 120px;
     }
 
     .brand-label {
-      font-size: 0.8rem;
+      font-size: clamp(0.7rem, 1vw, 0.8rem);
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--text-soft);
@@ -284,18 +280,19 @@
     }
 
     .brand-name {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-top: 8px;
     }
 
     .tag-pill {
       padding: 6px 14px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.18);
-      background: linear-gradient(120deg, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.06));
-      font-size: 0.78rem;
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.08));
+      font-size: clamp(0.7rem, 1.1vw, 0.78rem);
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-soft);
@@ -312,7 +309,6 @@
       box-shadow: 0 0 20px var(--gold-soft);
     }
 
-    /* Hero principal com 2 linhas na grade para encaixar um novo card */
     .hero {
       margin-top: 8px;
       display: grid;
@@ -330,7 +326,7 @@
       padding: 28px 26px;
       border-radius: var(--radius-xl);
       background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 45%),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 45%),
         radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.98));
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow-soft);
@@ -344,24 +340,25 @@
       inset: -40%;
       background:
         radial-gradient(circle at 0 0, var(--gold-soft), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(184, 138, 31, 0.24), transparent 55%);
+        radial-gradient(circle at 100% 100%, rgba(184, 138, 31, 0.28), transparent 55%);
       mix-blend-mode: screen;
       opacity: 0.7;
       pointer-events: none;
     }
 
     .hero-kicker {
-      font-size: 0.88rem;
+      font-size: clamp(0.75rem, 1.3vw, 0.88rem);
       text-transform: uppercase;
       letter-spacing: 0.24em;
       color: var(--gold);
       margin-bottom: 10px;
       position: relative;
       z-index: 1;
+      text-align: center;
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
       text-transform: uppercase;
       letter-spacing: 0.26em;
       line-height: 1.2;
@@ -371,7 +368,7 @@
 
     .hero-subtitle {
       text-align: center;
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       color: var(--text-soft);
       margin-bottom: 18px;
       letter-spacing: 0.18em;
@@ -381,10 +378,10 @@
     .hero-text {
       text-align: center;
       margin: 0 auto 22px;
-      max-width: 520px;
-      font-size: 0.98rem;
+      max-width: 560px;
+      font-size: clamp(0.9rem, 1.4vw, 1rem);
       color: var(--text-soft);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .hero-cta-row {
@@ -400,10 +397,10 @@
       padding: 12px 28px;
       border-radius: var(--radius-pill);
       border: none;
-      background: linear-gradient(135deg, var(--gold), #ffe7a3);
+      background: linear-gradient(135deg, var(--gold), #ffe97a);
       color: #3d2800;
       font-weight: 700;
-      font-size: 0.98rem;
+      font-size: clamp(0.9rem, 1.5vw, 0.98rem);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
@@ -411,7 +408,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 30px rgba(248, 210, 106, 0.5);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 30px rgba(248, 210, 106, 0.7);
       transform: translateY(0);
       transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
     }
@@ -422,16 +419,17 @@
 
     .cta-whats:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 40px rgba(248, 210, 106, 0.95);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 40px rgba(248, 210, 106, 1);
       filter: brightness(1.05);
     }
 
     .hero-note {
-      font-size: 0.8rem;
+      font-size: clamp(0.78rem, 1.2vw, 0.85rem);
       color: rgba(247, 236, 212, 0.95);
+      text-align: center;
+      max-width: 560px;
     }
 
-    /* Coluna lateral */
     .hero-side {
       grid-area: hero-side;
       display: flex;
@@ -449,7 +447,7 @@
     }
 
     .card-title {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.9rem);
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-soft);
@@ -457,7 +455,7 @@
     }
 
     .card-main {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
       font-weight: 600;
     }
 
@@ -466,7 +464,7 @@
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 10px;
-      font-size: 0.76rem;
+      font-size: clamp(0.72rem, 1.1vw, 0.8rem);
     }
 
     .pill {
@@ -480,7 +478,7 @@
 
     .timeline {
       margin-top: 10px;
-      font-size: 0.84rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.86rem);
       color: var(--text-soft);
       line-height: 1.4;
     }
@@ -501,7 +499,7 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.96));
       padding: 10px 12px;
-      font-size: 0.82rem;
+      font-size: clamp(0.78rem, 1.1vw, 0.82rem);
       color: var(--text-soft);
       display: flex;
       flex-direction: column;
@@ -511,16 +509,15 @@
     .highlight-label {
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      font-size: 0.7rem;
+      font-size: clamp(0.68rem, 1vw, 0.7rem);
       color: rgba(247, 236, 212, 0.9);
     }
 
     .highlight-main {
-      font-size: 0.9rem;
+      font-size: clamp(0.88rem, 1.3vw, 0.96rem);
       font-weight: 600;
     }
 
-    /* NOVO CARD – Ambiente & estrutura (preenche o espaço vazio) */
     .hero-extra {
       grid-area: hero-extra;
     }
@@ -533,7 +530,7 @@
       list-style: none;
       margin-top: 6px;
       padding-left: 0;
-      font-size: 0.9rem;
+      font-size: clamp(0.84rem, 1.3vw, 0.9rem);
       color: var(--text-soft);
     }
 
@@ -553,9 +550,8 @@
       box-shadow: 0 0 12px var(--gold-soft);
     }
 
-    /* Área interna do bar – card lateral */
     .bar-card-sub {
-      font-size: 0.88rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.88rem);
       color: var(--text-soft);
       margin-top: 6px;
       line-height: 1.45;
@@ -566,7 +562,7 @@
       flex-wrap: wrap;
       gap: 6px;
       margin-top: 8px;
-      font-size: 0.76rem;
+      font-size: clamp(0.72rem, 1.1vw, 0.78rem);
     }
 
     .bar-card-tag {
@@ -577,7 +573,6 @@
       color: var(--text-soft);
     }
 
-    /* Seção Rooftop */
     .section {
       margin-top: 12px;
     }
@@ -591,14 +586,14 @@
     }
 
     .section-title {
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 1.6vw, 1.05rem);
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-soft);
     }
 
     .section-tag {
-      font-size: 0.78rem;
+      font-size: clamp(0.76rem, 1.3vw, 0.82rem);
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: rgba(247, 236, 212, 0.95);
@@ -625,20 +620,20 @@
     }
 
     .rooftop-title {
-      font-size: 1.4rem;
+      font-size: clamp(1.2rem, 2vw, 1.4rem);
       text-transform: uppercase;
       letter-spacing: 0.18em;
     }
 
     .rooftop-subtitle {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 1.4vw, 0.9rem);
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-soft);
     }
 
     .rooftop-text {
-      font-size: 0.96rem;
+      font-size: clamp(0.88rem, 1.4vw, 0.96rem);
       line-height: 1.6;
       color: var(--text-soft);
     }
@@ -648,7 +643,7 @@
       margin-top: 6px;
       margin-bottom: 6px;
       padding-left: 0;
-      font-size: 0.9rem;
+      font-size: clamp(0.86rem, 1.3vw, 0.94rem);
       color: var(--text-soft);
     }
 
@@ -676,7 +671,7 @@
     }
 
     .rooftop-badge {
-      font-size: 0.8rem;
+      font-size: clamp(0.76rem, 1.2vw, 0.82rem);
       padding: 6px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -693,7 +688,7 @@
     }
 
     .rooftop-cta-note {
-      font-size: 0.8rem;
+      font-size: clamp(0.78rem, 1.2vw, 0.84rem);
       color: rgba(247, 236, 212, 0.95);
     }
 
@@ -703,7 +698,7 @@
       position: relative;
       min-height: 220px;
       background:
-        radial-gradient(circle at top left, rgba(248, 210, 106, 0.18), transparent 55%),
+        radial-gradient(circle at top left, rgba(248, 210, 106, 0.22), transparent 55%),
         radial-gradient(circle at bottom, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 1));
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 14px 40px rgba(0, 0, 0, 0.95);
@@ -734,19 +729,18 @@
     }
 
     .rooftop-media-tag {
-      font-size: 0.72rem;
+      font-size: clamp(0.68rem, 1.1vw, 0.72rem);
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: rgba(247, 236, 212, 0.95);
     }
 
     .rooftop-media-main {
-      font-size: 0.92rem;
+      font-size: clamp(0.88rem, 1.3vw, 0.94rem);
       font-weight: 600;
       color: var(--text-main);
     }
 
-    /* Seção “Em breve na cozinha” */
     .kitchen-section {
       margin-top: 24px;
     }
@@ -759,24 +753,24 @@
     }
 
     .kitchen-kicker {
-      font-size: 0.8rem;
+      font-size: clamp(0.78rem, 1.3vw, 0.8rem);
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
     .kitchen-title {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-soft);
     }
 
     .kitchen-sub {
-      font-size: 0.9rem;
+      font-size: clamp(0.86rem, 1.4vw, 0.94rem);
       color: var(--text-soft);
-      max-width: 620px;
-      line-height: 1.5;
+      max-width: 640px;
+      line-height: 1.6;
     }
 
     .kitchen-grid {
@@ -815,12 +809,12 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      font-size: 0.86rem;
+      font-size: clamp(0.8rem, 1.3vw, 0.86rem);
       color: var(--text-soft);
     }
 
     .dish-kicker {
-      font-size: 0.72rem;
+      font-size: clamp(0.68rem, 1.1vw, 0.72rem);
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(247, 236, 212, 0.9);
@@ -832,11 +826,10 @@
     }
 
     .dish-note {
-      font-size: 0.8rem;
+      font-size: clamp(0.76rem, 1.2vw, 0.8rem);
       color: rgba(247, 236, 212, 0.9);
     }
 
-    /* Rodapé */
     footer {
       margin-top: 22px;
       padding: 16px 12px 20px;
@@ -844,7 +837,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 16px;
-      font-size: 0.78rem;
+      font-size: clamp(0.74rem, 1.1vw, 0.78rem);
       color: rgba(247, 236, 212, 0.95);
       flex-wrap: wrap;
     }
@@ -854,7 +847,7 @@
     }
 
     .footer-title {
-      font-size: 0.8rem;
+      font-size: clamp(0.78rem, 1.2vw, 0.8rem);
       letter-spacing: 0.20em;
       text-transform: uppercase;
       color: var(--gold);
@@ -879,11 +872,10 @@
     }
 
     .footer-small {
-      font-size: 0.72rem;
+      font-size: clamp(0.7rem, 1.1vw, 0.72rem);
       opacity: 0.85;
     }
 
-    /* BOTÃO FLUTUANTE WHATSAPP */
     .whatsapp-float {
       position: fixed;
       bottom: 18px;
@@ -913,21 +905,23 @@
       filter: brightness(1.05);
     }
 
-    /* ================== RESPONSIVO ================== */
+    .cta-whats:focus-visible,
+    .footer-link:focus-visible,
+    .whatsapp-float:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
 
-    /* Tablets / telas médias */
     @media (max-width: 960px) {
       .rooftop-wrapper {
         grid-template-columns: minmax(0, 1.1fr);
       }
 
-      /* três cards de pratos viram duas colunas */
       .kitchen-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    /* Mobile grande / layout empilhado */
     @media (max-width: 840px) {
       main {
         padding-top: 24px;
@@ -940,7 +934,7 @@
 
       .brand {
         margin-left: 0;
-        margin-top: 110px; /* espaço para a logo no mobile */
+        margin-top: 110px;
       }
 
       .hero {
@@ -957,24 +951,26 @@
         align-items: flex-start;
       }
 
-      /* remover background fixed em mobile (performance) */
       body {
         background-attachment: scroll;
       }
     }
 
-    /* Mobile pequeno */
     @media (max-width: 640px) {
       .kitchen-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-    }
 
-    @media (max-width: 520px) {
       .hero-main {
         padding: 22px 18px;
       }
 
+      .highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
       .hero-title {
         letter-spacing: 0.22em;
       }
@@ -982,15 +978,21 @@
       .hero-text {
         font-size: 0.9rem;
       }
+    }
 
-      .highlights {
-        grid-template-columns: 1fr;
+    @media (prefers-reduced-motion: reduce) {
+      .gradient-orbit,
+      .gold-particles {
+        animation: none;
+      }
+
+      html {
+        scroll-behavior: auto;
       }
     }
   </style>
 </head>
 <body>
-  <!-- LOGO SPLASH (usa logo.png na raiz do projeto) -->
   <div class="logo-splash">
     <img src="logo.png" alt="Logo Babylon BSB" />
   </div>
@@ -1002,25 +1004,23 @@
   <main>
     <header>
       <div class="brand">
-        <!-- <div class="brand-label">Samambaia · Brasília · DF</div> -->
-        <br><div class="brand-name">Babylon Delicatessen</div>
+        <div class="brand-name">Babylon Delicatessen & Música</div>
       </div>
       <div class="tag-pill">
         <div class="tag-dot"></div>
-        Pré-abertura · 2026
+        Pré-abertura · Samambaia · 2026
       </div>
     </header>
 
     <section class="hero">
-      <!-- HERO PRINCIPAL -->
       <div class="hero-main">
-        <div class="hero-kicker">Em breve</div>
-        <h1 class="hero-title">Babylon</h1>
-        <h2 class="hero-subtitle">Delicatessen · Grill · Música ao vivo</h2>
+        <div class="hero-kicker">Em breve em Samambaia Sul</div>
+        <h1 class="hero-title">Babylon Samambaia</h1>
+        <h2 class="hero-subtitle">Delicatessen · Carnes · Pizzas · Música ao vivo</h2>
         <p class="hero-text">
-          Em breve, a casa mais comentada de Samambaia. Uma experiência completa
-          de gastronomia, drinks autorais e música ao vivo em um ambiente inspirado
-          nas lendas e excessos da antiga Babilônia.
+          A Babylon nasce para ser a casa de carnes, pizzas e música ao vivo mais falada de Samambaia.
+          Delicatessen, carnes premium, comida de boteco, charcutaria, drinks autorais e um rooftop VIP com jacuzzi
+          para quem gosta de noites longas, intensas e bem servidas.
         </p>
 
         <div class="hero-cta-row">
@@ -1035,100 +1035,126 @@
             <span>Entre para o Grupo VIP Babylon</span>
           </a>
           <p class="hero-note">
-            Receba novidades da inauguração, reservas exclusivas, pré-venda do Rooftop e eventos fechados.
+            Receba novidades da obra, bastidores da cozinha, pré-venda do Rooftop, reservas de inauguração
+            e eventos fechados.
+            <br />
+            Ou fale direto com a equipe:
+            <a
+              href="https://wa.me/5561995097813"
+              class="footer-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp da Babylon
+            </a>
           </p>
         </div>
       </div>
 
-      <!-- COLUNA LATERAL -->
       <aside class="hero-side">
         <div class="card">
           <div class="card-title">Experiência Babylon</div>
-          <div class="card-main">Muito além de um bar ou restaurante.</div>
+          <div class="card-main">Bar, restaurante, música e rooftop na mesma casa.</div>
           <div class="pill-row">
-            <span class="pill">Carnes & grill na brasa</span>
+            <span class="pill">Carnes na brasa</span>
             <span class="pill">Delicatessen & charcutaria</span>
-            <span class="pill">Drinks autorais & clássicos</span>
+            <span class="pill">Hambúrgueres & espetinhos</span>
+            <span class="pill">Pizzas individuais & família</span>
+            <span class="pill">Comida de boteco “raiz” com toque autoral</span>
             <span class="pill">Line-up de música ao vivo</span>
           </div>
           <p class="timeline">
-            <strong>Fase atual:</strong> obras, montagem de cozinha, bar, palco e Rooftop.
+            <strong>Fase atual:</strong> obra, instalação de cozinha profissional, câmara fria, bar, palco e Rooftop VIP.
             <br />
-            <strong>Próximo passo:</strong> soft opening para convidados e lista VIP.
+            <strong>Próximo passo:</strong> soft opening com lista fechada, testes de cardápio e formação do público da casa.
           </p>
         </div>
 
-        <!-- Card O que te espera -->
         <div class="card">
           <div class="card-title">O que te espera</div>
           <div class="highlights">
             <div class="highlight">
               <span class="highlight-label">Gastronomia</span>
-              <span class="highlight-main">Burgers, espetinhos, pizzas & comida de boteco</span>
-              <span>Receitas assinadas, defumações e escondidinhos autorais.</span>
+              <span class="highlight-main">Burgers, espetinhos, pizzas & boteco</span>
+              <span>
+                Hambúrguer artesanal, espetinhos na brasa, lagarto marinado, escondidinhos, esfiras e
+                petiscos pensados para a noite.
+              </span>
             </div>
             <div class="highlight">
               <span class="highlight-label">Drinks & bar</span>
-              <span class="highlight-main">Carta pensada para noites longas</span>
-              <span>Clássicos, releituras e coquetelaria criativa.</span>
+              <span class="highlight-main">Carta pensada para ficar até tarde</span>
+              <span>
+                Chope gelado, clássicos de boteco, releituras, drinks autorais e opções para quem quer
+                só uma taça de vinho tranquila.
+              </span>
             </div>
             <div class="highlight">
               <span class="highlight-label">Música & noite</span>
               <span class="highlight-main">
-                Do soft jazz ao rock, do pop ao samba e pagode, do sertanejo ao House — cada noite vira
-                uma experiência sonora completa.
+                Do voz e violão ao pagode, do rock ao sertanejo e ao House – a ideia é ter sempre
+                uma noite com cara de Babylon.
               </span>
             </div>
           </div>
         </div>
 
-        <!-- Card Área interna do bar -->
         <div class="card">
           <div class="card-title">Área interna do bar</div>
           <div class="card-main">Luz baixa, madeira, ferro e muito som.</div>
           <p class="bar-card-sub">
-            Um salão pensado para noites longas: bar em destaque, palco, mesas confortáveis e iluminação
-            quente que valoriza pessoas, drinks e pratos.
+            Um salão pensado para comer bem, beber melhor e ouvir música sem pressa: bar em destaque,
+            palco para bandas e DJs, mesas confortáveis e iluminação quente que valoriza quem está na mesa
+            e o que chega do balcão.
           </p>
           <div class="bar-card-tags">
             <span class="bar-card-tag">Palco para bandas & DJs</span>
             <span class="bar-card-tag">Iluminação cênica</span>
-            <span class="bar-card-tag">Som profissional</span>
+            <span class="bar-card-tag">Som profissional dimensionado para o espaço</span>
             <span class="bar-card-tag">Clima de festa o ano todo</span>
           </div>
         </div>
       </aside>
 
-      <!-- NOVO CARD – Ambiente & estrutura -->
       <div class="hero-extra card">
         <div class="card-title">Ambiente & estrutura</div>
-        <div class="card-main">Conforto para ficar muitas horas.</div>
+        <div class="card-main">Conforto de restaurante, alma de bar.</div>
         <ul class="hero-extra-list">
           <li>
             <span class="hero-extra-bullet"></span>
-            <span>Climatização completa e conforto acústico pensado para ouvir música sem gritar no ouvido de ninguém.</span>
+            <span>
+              Climatização completa e cuidado acústico para ouvir a banda, conversar na mesa
+              e não sair rouco no dia seguinte.
+            </span>
           </li>
           <li>
             <span class="hero-extra-bullet"></span>
-            <span>Iluminação em camadas: palco, bar e mesas com foco em criar atmosfera, não só claridade.</span>
+            <span>
+              Iluminação em camadas: palco, bar e mesas com foco em criar atmosfera de Babilônia, não só claridade.
+            </span>
           </li>
           <li>
             <span class="hero-extra-bullet"></span>
-            <span>Sistema de som assinado, com pressão sem distorção e equilíbrio em todos os pontos da casa.</span>
+            <span>
+              Sistema de som assinado, com pressão sem distorção e equilíbrio em todos os pontos da casa.
+            </span>
           </li>
           <li>
             <span class="hero-extra-bullet"></span>
-            <span>Área externa pensada para respirar, conversar e registrar a noite nas fotos.</span>
+            <span>
+              Área externa para respirar, conversar e registrar a noite nas fotos com o toque da Babylon.
+            </span>
           </li>
           <li>
             <span class="hero-extra-bullet"></span>
-            <span>Estacionar sem drama: localização estratégica na QN 303, fácil acesso e referência clara no Waze.</span>
+            <span>
+              Estacionar sem drama: localização estratégica na QN 303, Samambaia Sul, com rota fácil por Waze e apps.
+            </span>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- SEÇÃO ROOFTOP -->
     <section class="section" aria-labelledby="rooftop-title-section">
       <div class="section-header">
         <h2 id="rooftop-title-section" class="section-title">Experiência VIP · Babylon Rooftop</h2>
@@ -1137,39 +1163,40 @@
 
       <div class="rooftop-wrapper">
         <div class="rooftop-card">
-          <div class="rooftop-subtitle">Acima da cidade</div>
+          <div class="rooftop-subtitle">Acima da Babylon</div>
           <h3 class="rooftop-title">Rooftop com alma de Babilônia</h3>
           <p class="rooftop-text">
-            O Babylon Rooftop é o espaço mais exclusivo da casa: uma área elevada, pensada para noites
-            intensas, experiências privadas e momentos que não se repetem.
+            O Babylon Rooftop é a parte mais exclusiva da casa: uma área elevada, com jacuzzi e churrasqueira,
+            pensada para grupos pequenos que querem viver uma noite inteira em modo VIP, sem se preocupar com nada.
           </p>
 
           <ul class="rooftop-list">
             <li>
               <span class="rooftop-list-bullet"></span>
               <span>
-                <strong>Jacuzzi com borda de vidro</strong> e visual privilegiado — cenário perfeito para celebrar,
-                relaxar e brindar.
+                <strong>Jacuzzi com borda de vidro</strong> e visual aberto de Samambaia — cenário para aniversários,
+                celebrações, after de show ou só uma noite diferente com amigos.
               </span>
             </li>
             <li>
               <span class="rooftop-list-bullet"></span>
               <span>
-                <strong>Churrasqueira privativa</strong> dedicada ao grupo, com cortes selecionados e preparo
-                sob medida.
+                <strong>Churrasqueira privativa</strong> com cortes selecionados, linguiças especiais, acompanhamentos
+                e aquele clima de casa, sem perder o serviço de restaurante.
               </span>
             </li>
             <li>
               <span class="rooftop-list-bullet"></span>
               <span>
-                <strong>Cardápio diferenciado</strong>, criado apenas para o Rooftop: entradas, pratos e drinks
-                que não serão servidos no salão principal.
+                <strong>Cardápio diferenciado</strong>, criado só para o Rooftop: entradas, pratos e drinks que você
+                não vai encontrar no salão principal.
               </span>
             </li>
             <li>
               <span class="rooftop-list-bullet"></span>
               <span>
-                Experiência pensada para até <strong>6 clientes VIPs</strong> por horário, garantindo exclusividade total.
+                Experiência pensada para até <strong>6 clientes VIPs</strong> por horário, garantindo exclusividade total
+                e atenção do time da Babylon.
               </span>
             </li>
           </ul>
@@ -1177,7 +1204,7 @@
           <div class="rooftop-badge-row">
             <span class="rooftop-badge">Reserva antecipada obrigatória</span>
             <span class="rooftop-badge">Pacote fechado comida + bebida</span>
-            <span class="rooftop-badge">Ideal para celebrações e reuniões privadas</span>
+            <span class="rooftop-badge">Perfeito para comemorações e reuniões privadas</span>
           </div>
 
           <div class="rooftop-cta">
@@ -1192,7 +1219,7 @@
               <span>Reservar interesse no Rooftop</span>
             </a>
             <p class="rooftop-cta-note">
-              Entre no Grupo VIP Babylon e seja avisado quando as primeiras datas forem abertas.
+              Entre no Grupo VIP Babylon e seja avisado quando as primeiras datas forem abertas e os pacotes divulgados.
             </p>
           </div>
         </div>
@@ -1202,86 +1229,106 @@
             class="rooftop-image"
             src="roof.png"
             alt="Vista de rooftop noturno com jacuzzi, lareira e luzes douradas"
+            loading="lazy"
           />
           <div class="rooftop-media-overlay"></div>
           <div class="rooftop-media-label">
             <div class="rooftop-media-tag">Preview conceitual</div>
             <div class="rooftop-media-main">
-              Jacuzzi com borda de vidro, iluminação quente e clima de festa privada no topo da Babylon.
+              Jacuzzi com borda de vidro, iluminação quente, churrasco, drinks e clima de festa privada no topo da Babylon.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO EM BREVE NA COZINHA -->
     <section class="kitchen-section" aria-labelledby="kitchen-title">
       <div class="kitchen-header">
         <div class="kitchen-kicker">Em breve na cozinha</div>
-        <h2 id="kitchen-title" class="kitchen-title">Cortes, massas, burgers e toque invasor babilônico</h2>
+        <h2 id="kitchen-title" class="kitchen-title">Carnes, burgers, pizzas e boteco com DNA da Babylon</h2>
         <p class="kitchen-sub">
-          O cardápio está em fase final de testes. Enquanto os chefs queimam a cabeça e a chapa,
-          você já pode ter uma ideia do que vem por aí: pratos pensados para acompanhar noites longas,
-          bons drinks e muita música.
+          A cozinha da Babylon está sendo montada para entregar corte na brasa, hambúrguer de respeito, pizzas
+          individuais e família, comida de boteco bem servida e pratos para fechar a noite. Enquanto o fogão e a chapa
+          entram em teste, você já pode ter uma ideia do caminho.
         </p>
       </div>
 
       <div class="kitchen-grid">
-        <!-- prato 1 -->
         <article class="dish-card">
           <div class="dish-image-wrapper">
-            <img src="dish-burger.png" alt="Hambúrguer artesanal com fritas" class="dish-image" />
+            <img
+              src="dish-burger.png"
+              alt="Hambúrguer artesanal com fritas"
+              class="dish-image"
+              loading="lazy"
+            />
           </div>
           <div class="dish-body">
-            <div class="dish-kicker">Burgers & grill</div>
-            <div class="dish-title">Hambúrguer artesanal com fritas</div>
+            <div class="dish-kicker">Burgers & chapa quente</div>
+            <div class="dish-title">Hambúrguer artesanal Babylon</div>
             <p>
-              Blend exclusivo, pão macio e fritas crocantes. Feito para comer com as mãos e lamber os dedos
-              sem culpa.
+              Blend próprio, pão macio, fritas crocantes e aquele ponto que você escolhe na chapa. Para comer com a mão,
+              sujar o guardanapo e não ter pressa.
             </p>
-            <p class="dish-note">Opções clássicas, smash e versões especiais da casa.</p>
+            <p class="dish-note">
+              Clássicos, smash, versões especiais da casa e combinações com espetinhos e acompanhamentos.
+            </p>
           </div>
         </article>
 
-        <!-- prato 2 -->
         <article class="dish-card">
           <div class="dish-image-wrapper">
-            <img src="dish-potato.png" alt="Batatas rústicas com tempero especial" class="dish-image" />
+            <img
+              src="dish-potato.png"
+              alt="Tábuas de frios e petiscos Babylon Signature"
+              class="dish-image"
+              loading="lazy"
+            />
           </div>
           <div class="dish-body">
-            <div class="dish-kicker">Delicatessen</div>
+            <div class="dish-kicker">Delicatessen & charcutaria</div>
             <div class="dish-title">Tábuas Babylon Signature</div>
             <p>
-              Defumados, queijos, pães, crocantes e petiscos para compartilhar enquanto a noite esquenta.
+              Defumados, lagarto marinado, queijos, pães, crocantes e petiscos para dividir na mesa enquanto a música
+              roda solta.
             </p>
-            <p class="dish-note">Perfeitas para acompanhar vinho, chope ou drinks autorais.</p>
+            <p class="dish-note">
+              Combinações para vinho, chope, drinks autorais e aquela resenha longa com amigos.
+            </p>
           </div>
         </article>
 
-        <!-- prato 3 -->
         <article class="dish-card">
           <div class="dish-image-wrapper">
-            <img src="dish-bowl.png" alt="Pratos coloridos em tigelas e travessas" class="dish-image" />
+            <img
+              src="dish-bowl.png"
+              alt="Pratos coloridos em tigelas e travessas"
+              class="dish-image"
+              loading="lazy"
+            />
           </div>
           <div class="dish-body">
             <div class="dish-kicker">Pratos & noite</div>
-            <div class="dish-title">Menu de casa · Late night</div>
+            <div class="dish-title">Escondidinhos, massas & comfort food</div>
             <p>
-              Massas, escondidinhos, pratos bem servidos e versões comfort food para fechar a noite em alto nível.
+              Escondidinhos autorais, massas, pratos bem servidos e releituras de clássicos de boteco para quem gosta
+              de encerrar a noite com comida de verdade no prato.
             </p>
-            <p class="dish-note">Opções vegetarianas e releituras dos clássicos de boteco.</p>
+            <p class="dish-note">
+              Opções com carne, aves, versões vegetarianas e propostas para dividir ou comer sozinho.
+            </p>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- RODAPÉ -->
     <footer>
       <div class="footer-block">
         <div class="footer-title">Endereço & horário</div>
         <p>Babylon BSB · QN 303 Conjunto 04 Loja 04 · Samambaia Sul · Brasília – DF</p>
         <p class="footer-small">
-          Horário previsto de funcionamento (fase de abertura): de terça a domingo, das 16h até tarde da noite.
+          Horário previsto de funcionamento na abertura: de terça a domingo, das 16h até tarde da noite,
+          com programação de música ao vivo em dias selecionados.
         </p>
       </div>
 
@@ -1298,7 +1345,7 @@
           </a>
         </p>
         <p class="footer-small">
-          Use “Babylon – QN 303 Samambaia” como referência ao traçar a rota.
+          Procure por “Babylon – QN 303 Samambaia” como referência ao traçar a rota.
         </p>
       </div>
 
@@ -1324,14 +1371,23 @@
             Linktr.ee/babylon.bsb
           </a>
         </p>
+        <p>
+          <a
+            class="footer-link"
+            href="https://wa.me/5561998198688"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp · (61) 99509-7813
+          </a>
+        </p>
         <p class="footer-small">
-          Acompanhe bastidores, obras, testes de cardápio e datas oficiais de inauguração.
+          Acompanhe a evolução da obra, testes de cardápio, escolha de equipamentos e os bastidores da Babylon até a inauguração.
         </p>
       </div>
     </footer>
   </main>
 
-  <!-- BOTÃO FLUTUANTE WHATSAPP -->
   <a
     href="https://wa.me/5561998198688"
     class="whatsapp-float"
@@ -1345,11 +1401,10 @@
   </a>
 
   <script>
-    // Quando a página terminar de carregar, a logo fica no centro por 2,2s e depois sobe
     window.addEventListener('load', function () {
       setTimeout(function () {
         document.body.classList.add('loaded');
-      }, 2200); // 2200 ms = 2,2 segundos
+      }, 2200);
     });
   </script>
 </body>
