@@ -770,6 +770,105 @@
       color: var(--text-main);
     }
 
+    /* ============ BASTIDORES DA OBRA – TIMELINE ============ */
+
+    .timeline-section {
+      margin-top: 28px;
+    }
+
+    .timeline-intro {
+      font-size: clamp(0.86rem, 1.4vw, 0.94rem);
+      color: var(--text-soft);
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      padding-left: 22px;
+      margin-top: 8px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.2));
+      opacity: 0.9;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 10px 12px 12px 12px;
+      margin-bottom: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.96));
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -15px;
+      top: 14px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--gold), var(--accent2));
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .timeline-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .timeline-title {
+      font-size: clamp(0.86rem, 1.4vw, 0.96rem);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .timeline-tag {
+      font-size: clamp(0.7rem, 1.2vw, 0.78rem);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(247, 236, 212, 0.9);
+      opacity: 0.9;
+    }
+
+    .timeline-body {
+      font-size: clamp(0.8rem, 1.3vw, 0.88rem);
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .timeline-body strong {
+      color: var(--gold);
+    }
+
+    .timeline-meta {
+      font-size: clamp(0.72rem, 1.1vw, 0.8rem);
+      opacity: 0.9;
+    }
+
+    .timeline-meta span {
+      margin-right: 10px;
+    }
+
     .kitchen-section {
       margin-top: 24px;
     }
@@ -1061,6 +1160,7 @@
       <div class="header-right">
         <nav class="main-nav" aria-label="Navegação principal">
           <a href="#topo">Início</a>
+          <a href="#bastidores">Bastidores</a>
           <a href="#rooftop">Rooftop VIP</a>
           <a href="#cozinha">Cozinha</a>
           <a href="#contato">Contato</a>
@@ -1213,6 +1313,120 @@
         </ul>
       </div>
     </section>
+
+    <!-- ========= NOVA SEÇÃO: BASTIDORES DA OBRA ========= -->
+    <section id="bastidores" class="timeline-section section" aria-labelledby="bastidores-title">
+      <div class="section-header">
+        <h2 id="bastidores-title" class="section-title">Bastidores da Obra · Cronologia Babylon</h2>
+        <div class="section-tag">Do ponto vazio à casa pronta</div>
+      </div>
+
+      <p class="timeline-intro">
+        A Babylon não nasce pronta. Por trás de cada noite, tem projeto, poeira, concreto, teste de som e muito detalhe
+        pensado à mão. Aqui vai um resumo do que já aconteceu e do que ainda vem pela frente na obra.
+      </p>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-line" aria-hidden="true"></div>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">📍</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Escolha do ponto & conceito</h3>
+            <span class="timeline-tag">Fase 1</span>
+          </div>
+          <p class="timeline-body">
+            Definição da <strong>QN 303</strong> como endereço da casa, estudo de público, conceito de
+            <strong>delicatessen, bar e rooftop</strong> na mesma estrutura e desenho inicial do projeto arquitetônico.
+          </p>
+          <p class="timeline-meta">
+            <span>🔎 Pesquisa de fluxo na região</span>
+            <span>🧭 Definição do posicionamento Babylon</span>
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🧱</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Demolição & preparação do espaço</h3>
+            <span class="timeline-tag">Fase 2</span>
+          </div>
+          <p class="timeline-body">
+            Quebra de paredes, nivelamento, reforço de estrutura e adequações para receber <strong>cozinha profissional,
+            câmara fria, bar principal e palco</strong>, já pensando na acústica e na passagem de tubulações.
+          </p>
+          <p class="timeline-meta">
+            <span>🔨 Obra pesada</span>
+            <span>📐 Revisão de layout em tempo real</span>
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🍳</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Montagem da cozinha & câmara fria</h3>
+            <span class="timeline-tag">Fase 3</span>
+          </div>
+          <p class="timeline-body">
+            Instalação de <strong>cozinha quente, chapa, fornos, exaustão</strong> e estruturas da câmara fria, pensando
+            no fluxo de produção para burgers, espetinhos, pizzas, escondidinhos e petiscos de boteco.
+          </p>
+          <p class="timeline-meta">
+            <span>🧊 Câmara fria & estoque</span>
+            <span>♻ Fluxo otimizado da equipe</span>
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🎛️</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Som, luz & palco</h3>
+            <span class="timeline-tag">Fase 4</span>
+          </div>
+          <p class="timeline-body">
+            Projeto de <strong>iluminação cênica</strong>, dimensionamento do sistema de som, posicionamento do palco,
+            painel de controle e testes para equilibrar <strong>voz, instrumentos e ambiente</strong> sem exagero.
+          </p>
+          <p class="timeline-meta">
+            <span>🎤 Testes com banda & DJs</span>
+            <span>💡 Cenografia de bar e restaurante</span>
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🛁</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Construção do Rooftop Babylon</h3>
+            <span class="timeline-tag">Fase 5</span>
+          </div>
+          <p class="timeline-body">
+            Estruturação da área elevada, instalação da <strong>jacuzzi com borda de vidro</strong>, churrasqueira privativa,
+            sistema de drenagem, segurança e ambientação para receber até <strong>6 clientes VIPs por horário</strong>.
+          </p>
+          <p class="timeline-meta">
+            <span>🔥 Foco em experiência VIP</span>
+            <span>🥂 Espaço pensado para celebrações</span>
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot" aria-hidden="true">🚀</div>
+          <div class="timeline-label-row">
+            <h3 class="timeline-title">Soft opening & ajustes finos</h3>
+            <span class="timeline-tag">Fase 6</span>
+          </div>
+          <p class="timeline-body">
+            Abertura em <strong>formato controlado</strong>, com lista fechada, testes de cardápio, calibração de serviço,
+            análise de feedback dos convidados e últimos ajustes antes da inauguração oficial.
+          </p>
+          <p class="timeline-meta">
+            <span>📋 Feedback real de público</span>
+            <span>🛠 Correções em tempo real</span>
+          </p>
+        </article>
+      </div>
+    </section>
+    <!-- ========= FIM BASTIDORES ========= -->
 
     <section id="rooftop" class="section" aria-labelledby="rooftop-title-section">
       <div class="section-header">
