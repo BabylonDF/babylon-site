@@ -40,6 +40,9 @@
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="/logo.png" />
 
+  <!-- PRELOAD LOGO PARA ANIMAÇÃO MAIS SUAVE -->
+  <link rel="preload" href="logo.png" as="image" />
+
   <!-- CANONICAL -->
   <link rel="canonical" href="https://www.babylonbsb.com.br/" />
 
@@ -98,7 +101,7 @@
       "Charcutaria",
       "Comida de Boteco"
     ],
-    "menu": "",
+    "menu": "https://www.babylonbsb.com.br/menu",
     "sameAs": [
       "https://instagram.com/babylon.bsb",
       "https://linktr.ee/babylon.bsb"
@@ -196,11 +199,11 @@
       position: fixed;
       inset: -40%;
       background:
-        radial-gradient(circle at 20% 10%, rgba(255, 215, 0, 0.55), transparent 55%),
-        radial-gradient(circle at 80% 20%, rgba(255, 230, 140, 0.46), transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(30, 16, 0, 0.98), transparent 55%);
-      filter: blur(40px);
-      opacity: 0.9;
+        radial-gradient(circle at 20% 10%, rgba(255, 215, 0, 0.48), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(255, 230, 140, 0.38), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(30, 16, 0, 0.95), transparent 55%);
+      filter: blur(28px);
+      opacity: 0.85;
       z-index: -2;
       animation: floatGlow 18s ease-in-out infinite alternate;
     }
@@ -221,12 +224,12 @@
       z-index: -1;
       background-image:
         radial-gradient(circle, rgba(255, 215, 0, 0.6) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255, 215, 0, 0.35) 1px, transparent 1px);
+        radial-gradient(circle, rgba(255, 215, 0, 0.3) 1px, transparent 1px);
       background-size: 220px 220px, 320px 320px;
       background-position: 0 0, 80px 120px;
       mix-blend-mode: screen;
       animation: particlesDrift 32s linear infinite;
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
     @keyframes particlesDrift {
@@ -271,20 +274,42 @@
       margin-left: 120px;
     }
 
-    .brand-label {
-      font-size: clamp(0.7rem, 1vw, 0.8rem);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      opacity: 0.9;
-    }
-
     .brand-name {
       font-size: clamp(1rem, 1.6vw, 1.3rem);
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-top: 8px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 12px;
+      font-size: clamp(0.78rem, 1.2vw, 0.86rem);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: var(--text-soft);
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      background: rgba(0, 0, 0, 0.35);
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .main-nav a:hover {
+      border-color: rgba(255, 215, 0, 0.7);
+      background: rgba(0, 0, 0, 0.7);
+      transform: translateY(-1px);
     }
 
     .tag-pill {
@@ -428,6 +453,10 @@
       color: rgba(247, 236, 212, 0.95);
       text-align: center;
       max-width: 560px;
+    }
+
+    .hero-note a {
+      color: var(--gold);
     }
 
     .hero-side {
@@ -907,7 +936,8 @@
 
     .cta-whats:focus-visible,
     .footer-link:focus-visible,
-    .whatsapp-float:focus-visible {
+    .whatsapp-float:focus-visible,
+    .main-nav a:focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 3px;
     }
@@ -935,6 +965,12 @@
       .brand {
         margin-left: 0;
         margin-top: 110px;
+      }
+
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
 
       .hero {
@@ -968,6 +1004,12 @@
       .highlights {
         grid-template-columns: 1fr;
       }
+
+      .main-nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
     }
 
     @media (max-width: 520px) {
@@ -977,6 +1019,16 @@
 
       .hero-text {
         font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body.loaded .logo-splash img {
+        width: min(90px, 24vw);
+      }
+
+      .brand {
+        margin-top: 90px;
       }
     }
 
@@ -1001,26 +1053,33 @@
   <div class="gold-particles"></div>
   <div class="noise-overlay"></div>
 
-  <main>
+  <main id="topo">
     <header>
       <div class="brand">
         <div class="brand-name">Babylon Delicatessen & Música</div>
       </div>
-      <div class="tag-pill">
-        <div class="tag-dot"></div>
-        Pré-abertura · Samambaia · 2026
+      <div class="header-right">
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a href="#topo">Início</a>
+          <a href="#rooftop">Rooftop VIP</a>
+          <a href="#cozinha">Cozinha</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="tag-pill">
+          <div class="tag-dot"></div>
+          Pré-abertura · Samambaia · 2026
+        </div>
       </div>
     </header>
 
     <section class="hero">
       <div class="hero-main">
         <div class="hero-kicker">Em breve em Samambaia Sul</div>
-        <h1 class="hero-title">Babylon Samambaia</h1>
-        <h2 class="hero-subtitle">Delicatessen · Carnes · Pizzas · Música ao vivo</h2>
+        <h1 class="hero-title">Babylon Delicatessen – Bar • Restaurante • Rooftop</h1>
+        <h2 class="hero-subtitle">Delicatessen · Boteco premium · Rooftop VIP & música ao vivo</h2>
         <p class="hero-text">
-          A Babylon nasce para ser a casa de carnes, pizzas e música ao vivo mais falada de Samambaia.
-          Delicatessen, carnes premium, comida de boteco, charcutaria, drinks autorais e um rooftop VIP com jacuzzi
-          para quem gosta de noites longas, intensas e bem servidas.
+          A Babylon chega para redefinir as noites de Samambaia. Delicatessen, carnes premium, comida de boteco,
+          charcutaria, drinks autorais e um rooftop VIP com jacuzzi para quem gosta de noites longas, intensas e bem servidas.
         </p>
 
         <div class="hero-cta-row">
@@ -1060,7 +1119,7 @@
             <span class="pill">Delicatessen & charcutaria</span>
             <span class="pill">Hambúrgueres & espetinhos</span>
             <span class="pill">Pizzas individuais & família</span>
-            <span class="pill">Comida de boteco “raiz” com toque autoral</span>
+            <span class="pill">Comida de boteco autoral</span>
             <span class="pill">Line-up de música ao vivo</span>
           </div>
           <p class="timeline">
@@ -1110,7 +1169,7 @@
           <div class="bar-card-tags">
             <span class="bar-card-tag">Palco para bandas & DJs</span>
             <span class="bar-card-tag">Iluminação cênica</span>
-            <span class="bar-card-tag">Som profissional dimensionado para o espaço</span>
+            <span class="bar-card-tag">Som profissional dimensionado</span>
             <span class="bar-card-tag">Clima de festa o ano todo</span>
           </div>
         </div>
@@ -1155,7 +1214,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="rooftop-title-section">
+    <section id="rooftop" class="section" aria-labelledby="rooftop-title-section">
       <div class="section-header">
         <h2 id="rooftop-title-section" class="section-title">Experiência VIP · Babylon Rooftop</h2>
         <div class="section-tag">Jacuzzi · Churrasqueira · Cardápio exclusivo</div>
@@ -1167,7 +1226,8 @@
           <h3 class="rooftop-title">Rooftop com alma de Babilônia</h3>
           <p class="rooftop-text">
             O Babylon Rooftop é a parte mais exclusiva da casa: uma área elevada, com jacuzzi e churrasqueira,
-            pensada para grupos pequenos que querem viver uma noite inteira em modo VIP, sem se preocupar com nada.
+            pensada para grupos pequenos que querem viver uma noite inteira em modo VIP, com privacidade, atendimento
+            dedicado e clima de festa particular.
           </p>
 
           <ul class="rooftop-list">
@@ -1230,6 +1290,7 @@
             src="roof.png"
             alt="Vista de rooftop noturno com jacuzzi, lareira e luzes douradas"
             loading="lazy"
+            decoding="async"
           />
           <div class="rooftop-media-overlay"></div>
           <div class="rooftop-media-label">
@@ -1242,7 +1303,7 @@
       </div>
     </section>
 
-    <section class="kitchen-section" aria-labelledby="kitchen-title">
+    <section id="cozinha" class="kitchen-section" aria-labelledby="kitchen-title">
       <div class="kitchen-header">
         <div class="kitchen-kicker">Em breve na cozinha</div>
         <h2 id="kitchen-title" class="kitchen-title">Carnes, burgers, pizzas e boteco com DNA da Babylon</h2>
@@ -1261,6 +1322,7 @@
               alt="Hambúrguer artesanal com fritas"
               class="dish-image"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="dish-body">
@@ -1283,6 +1345,7 @@
               alt="Tábuas de frios e petiscos Babylon Signature"
               class="dish-image"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="dish-body">
@@ -1305,6 +1368,7 @@
               alt="Pratos coloridos em tigelas e travessas"
               class="dish-image"
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="dish-body">
@@ -1322,7 +1386,7 @@
       </div>
     </section>
 
-    <footer>
+    <footer id="contato">
       <div class="footer-block">
         <div class="footer-title">Endereço & horário</div>
         <p>Babylon BSB · QN 303 Conjunto 04 Loja 04 · Samambaia Sul · Brasília – DF</p>
@@ -1342,6 +1406,16 @@
             rel="noopener noreferrer"
           >
             Abrir no Waze
+          </a>
+        </p>
+        <p>
+          <a
+            class="footer-link"
+            href="https://www.google.com/maps/search/Babylon%20Delicatessen/@-15.88094233,-48.09459593,17z"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir no Google Maps
           </a>
         </p>
         <p class="footer-small">
@@ -1374,7 +1448,7 @@
         <p>
           <a
             class="footer-link"
-            href="https://wa.me/5561998198688"
+            href="https://wa.me/5561995097813"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -1389,7 +1463,7 @@
   </main>
 
   <a
-    href="https://wa.me/5561998198688"
+    href="https://wa.me/5561995097813"
     class="whatsapp-float"
     target="_blank"
     rel="noopener noreferrer"
@@ -1404,7 +1478,7 @@
     window.addEventListener('load', function () {
       setTimeout(function () {
         document.body.classList.add('loaded');
-      }, 2200);
+      }, 1200);
     });
   </script>
 </body>
