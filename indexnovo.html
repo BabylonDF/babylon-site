@@ -804,19 +804,22 @@
       line-height: 1.5;
     }
 
+    /* wrapper sem estilos que interfiram no iframe */
     .reservas-frame-wrapper {
       margin-top: 8px;
       border-radius: var(--radius-xl);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.95);
-      background: radial-gradient(circle at top, rgba(255, 215, 0, 0.14), transparent 60%);
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
     }
 
     .reservas-frame-wrapper iframe {
       width: 100%;
       min-height: 520px;
-      border: 0;
+      border: 0 !important;
+      background: #ffffff !important; /* força o fundo branco do Google */
     }
 
     .kitchen-section {
