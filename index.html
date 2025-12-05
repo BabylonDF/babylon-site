@@ -126,7 +126,6 @@
 
   <style>
     :root {
-      /* Paleta focada em OURO MAIS REAL */
       --bg-deep: #070401;
       --bg-gold-deep: #221405;
       --bg-gold-soft: #5c3b07;
@@ -209,12 +208,8 @@
     }
 
     @keyframes floatGlow {
-      from {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      to {
-        transform: translate3d(0, -40px, 0) scale(1.06);
-      }
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(0, -40px, 0) scale(1.06); }
     }
 
     .gold-particles {
@@ -233,12 +228,8 @@
     }
 
     @keyframes particlesDrift {
-      from {
-        transform: translate3d(0, 0, 0);
-      }
-      to {
-        transform: translate3d(-120px, -120px, 0);
-      }
+      from { transform: translate3d(0, 0, 0); }
+      to   { transform: translate3d(-120px, -120px, 0); }
     }
 
     .noise-overlay {
@@ -438,9 +429,7 @@
       transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
     }
 
-    .cta-whats span.icon {
-      font-size: 1.1rem;
-    }
+    .cta-whats span.icon { font-size: 1.1rem; }
 
     .cta-whats:hover {
       transform: translateY(-2px);
@@ -455,9 +444,7 @@
       max-width: 560px;
     }
 
-    .hero-note a {
-      color: var(--gold);
-    }
+    .hero-note a { color: var(--gold); }
 
     .hero-side {
       grid-area: hero-side;
@@ -512,9 +499,7 @@
       line-height: 1.4;
     }
 
-    .timeline strong {
-      color: var(--gold);
-    }
+    .timeline strong { color: var(--gold); }
 
     .highlights {
       display: grid;
@@ -547,13 +532,9 @@
       font-weight: 600;
     }
 
-    .hero-extra {
-      grid-area: hero-extra;
-    }
+    .hero-extra { grid-area: hero-extra; }
 
-    .hero-extra .card-main {
-      margin-bottom: 6px;
-    }
+    .hero-extra .card-main { margin-bottom: 6px; }
 
     .hero-extra-list {
       list-style: none;
@@ -602,9 +583,7 @@
       color: var(--text-soft);
     }
 
-    .section {
-      margin-top: 12px;
-    }
+    .section { margin-top: 12px; }
 
     .section-header {
       display: flex;
@@ -770,9 +749,43 @@
       color: var(--text-main);
     }
 
-    .kitchen-section {
-      margin-top: 24px;
+    /* ============ SEÇÃO DE RESERVAS – ROOFTOP ============ */
+
+    .secao-reservas { margin-top: 28px; }
+
+    .secao-reservas .section-header { margin-bottom: 16px; }
+
+    .reservas-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 20px 20px 18px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
+
+    .reservas-text {
+      font-size: clamp(0.86rem, 1.4vw, 0.94rem);
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    .reservas-note {
+      font-size: clamp(0.78rem, 1.2vw, 0.86rem);
+      color: rgba(247, 236, 212, 0.9);
+      line-height: 1.5;
+    }
+
+    .reservas-frame-wrapper {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .kitchen-section { margin-top: 24px; }
 
     .kitchen-header {
       display: flex;
@@ -871,9 +884,7 @@
       flex-wrap: wrap;
     }
 
-    .footer-block {
-      max-width: 320px;
-    }
+    .footer-block { max-width: 320px; }
 
     .footer-title {
       font-size: clamp(0.78rem, 1.2vw, 0.8rem);
@@ -896,9 +907,7 @@
       border-bottom: 1px dotted var(--gold);
     }
 
-    .footer-link:hover {
-      opacity: 0.9;
-    }
+    .footer-link:hover { opacity: 0.9; }
 
     .footer-small {
       font-size: clamp(0.7rem, 1.1vw, 0.72rem);
@@ -943,36 +952,15 @@
     }
 
     @media (max-width: 960px) {
-      .rooftop-wrapper {
-        grid-template-columns: minmax(0, 1.1fr);
-      }
-
-      .kitchen-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .rooftop-wrapper { grid-template-columns: minmax(0, 1.1fr); }
+      .kitchen-grid    { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 840px) {
-      main {
-        padding-top: 24px;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .brand {
-        margin-left: 0;
-        margin-top: 110px;
-      }
-
-      .header-right {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-
+      main { padding-top: 24px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .brand { margin-left: 0; margin-top: 110px; }
+      .header-right { width: 100%; justify-content: space-between; flex-wrap: wrap; }
       .hero {
         grid-template-columns: minmax(0, 1fr);
         grid-template-rows: auto auto auto;
@@ -981,66 +969,30 @@
           "hero-side"
           "hero-extra";
       }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      body {
-        background-attachment: scroll;
-      }
+      footer { flex-direction: column; align-items: flex-start; }
+      body   { background-attachment: scroll; }
     }
 
     @media (max-width: 640px) {
-      .kitchen-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-main {
-        padding: 22px 18px;
-      }
-
-      .highlights {
-        grid-template-columns: 1fr;
-      }
-
-      .main-nav {
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
+      .kitchen-grid { grid-template-columns: minmax(0, 1fr); }
+      .hero-main    { padding: 22px 18px; }
+      .highlights   { grid-template-columns: 1fr; }
+      .main-nav     { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
     }
 
     @media (max-width: 520px) {
-      .hero-title {
-        letter-spacing: 0.22em;
-      }
-
-      .hero-text {
-        font-size: 0.9rem;
-      }
+      .hero-title { letter-spacing: 0.22em; }
+      .hero-text  { font-size: 0.9rem; }
     }
 
     @media (max-width: 480px) {
-      body.loaded .logo-splash img {
-        width: min(90px, 24vw);
-      }
-
-      .brand {
-        margin-top: 90px;
-      }
+      body.loaded .logo-splash img { width: min(90px, 24vw); }
+      .brand { margin-top: 90px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .gradient-orbit,
-      .gold-particles {
-        animation: none;
-      }
-
-      html {
-        scroll-behavior: auto;
-      }
+      .gradient-orbit, .gold-particles { animation: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -1062,6 +1014,7 @@
         <nav class="main-nav" aria-label="Navegação principal">
           <a href="#topo">Início</a>
           <a href="#rooftop">Rooftop VIP</a>
+          <a href="#reservas-rooftop">Reservas</a>
           <a href="#cozinha">Cozinha</a>
           <a href="#contato">Contato</a>
         </nav>
@@ -1300,6 +1253,49 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="reservas-rooftop" class="secao-reservas" aria-labelledby="reservas-rooftop-titulo">
+      <div class="section-header">
+        <h2 id="reservas-rooftop-titulo" class="section-title">
+          Reservas · Rooftop VIP Babylon
+        </h2>
+        <div class="section-tag">
+          Jacuzzi · Churrasqueira · Experiência privada
+        </div>
+      </div>
+
+      <div class="reservas-card">
+        <p class="reservas-text">
+          Clique no botão abaixo para abrir a agenda oficial de reservas do Rooftop VIP da Babylon no Google Calendar.
+          Escolha o dia e o horário disponíveis, confirme os dados e finalize a reserva diretamente pelo sistema do Google.
+        </p>
+
+        <div class="reservas-frame-wrapper">
+          <!-- Google Calendar Appointment Scheduling begin -->
+          <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+          <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+          <script>
+          (function() {
+            var target = document.currentScript;
+            window.addEventListener('load', function() {
+              calendar.schedulingButton.load({
+                url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0pVF7KmiyA2z38Fqb4Z-eKkqWVcvL-tY1IZkHGi5VZdPIUhHrX6bF3zWhCYYkCF-9LeR7pAyl4?gv=true',
+                color: '#E4C441',
+                label: "Reservas · Rooftop VIP Babylon",
+                target: target,
+              });
+            });
+          })();
+          </script>
+          <!-- end Google Calendar Appointment Scheduling -->
+        </div>
+
+        <p class="reservas-note">
+          Em caso de dúvidas especiais, eventos corporativos, aniversários ou pacotes personalizados, fale diretamente
+          com a equipe da Babylon pelo WhatsApp antes ou depois de reservar seu horário.
+        </p>
       </div>
     </section>
 
