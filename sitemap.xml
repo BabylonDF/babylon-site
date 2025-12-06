@@ -1,33 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
-  <!-- =========================
-       Página inicial
-  ========================== -->
+  <!-- ======================================================
+       PÁGINA PRINCIPAL – Home
+  ======================================================= -->
   <url>
     <loc>https://www.babylonbsb.com.br/</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
+
+    <!-- Imagens principais -->
+    <image:image>
+      <image:loc>https://www.babylonbsb.com.br/logo.png</image:loc>
+      <image:title>Logo Babylon BSB</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://www.babylonbsb.com.br/roof.png</image:loc>
+      <image:title>Rooftop VIP Babylon Preview</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://www.babylonbsb.com.br/dish-burger.png</image:loc>
+      <image:title>Hambúrguer Artesanal Babylon</image:title>
+    </image:image>
+
   </url>
 
-  <!-- =========================
-       Seções internas da Home
-       (ancoras valem como páginas
-       para SEO avançado)
-  ========================== -->
+
+  <!-- ======================================================
+       SEÇÕES INTERNAS (âncoras) – ajudam o Google a entender
+       a estrutura de conteúdo da sua Home
+  ======================================================= -->
+
   <url>
     <loc>https://www.babylonbsb.com.br/#rooftop</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://www.babylonbsb.com.br/#reservas-rooftop</loc>
     <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.95</priority>
   </url>
 
   <url>
@@ -44,12 +65,13 @@
     <priority>0.60</priority>
   </url>
 
-  <!-- =========================
-       Páginas futuras planejadas
-       (ótimo para ranqueamento antecipado)
-  ========================== -->
 
-  <!-- Menu -->
+  <!-- ======================================================
+       PÁGINAS FUTURAS – O Google já reserva espaço
+       para SEO antecipado
+  ======================================================= -->
+
+  <!-- Menu / cardápio resumido -->
   <url>
     <loc>https://www.babylonbsb.com.br/menu</loc>
     <changefreq>weekly</changefreq>
@@ -60,56 +82,77 @@
   <url>
     <loc>https://www.babylonbsb.com.br/cardapio</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <!-- Reservas (página dedicada, além do botão) -->
-  <url>
-    <loc>https://www.babylonbsb.com.br/reservas</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <!-- Eventos e Música ao Vivo -->
-  <url>
-    <loc>https://www.babylonbsb.com.br/eventos</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
 
-  <!-- Pacotes Rooftop – corporativos, românticos, aniversários -->
+  <!-- Página de reservas dedicada -->
+  <url>
+    <loc>https://www.babylonbsb.com.br/reservas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+
+    <!-- Poderá ter imagens futuramente -->
+  </url>
+
+  <!-- Eventos e Agenda Musical -->
+  <url>
+    <loc>https://www.babylonbsb.com.br/eventos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Pacotes VIP (romântico, corporativo, aniversários) -->
   <url>
     <loc>https://www.babylonbsb.com.br/pacotes</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <!-- Página da Obra (bastidores e diário da construção) -->
-  <url>
-    <loc>https://www.babylonbsb.com.br/obra</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.65</priority>
   </url>
 
-  <!-- Página institucional -->
+  <!-- Bastidores da Obra (diário da construção) -->
+  <url>
+    <loc>https://www.babylonbsb.com.br/obra</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Página institucional "Sobre a Babylon" -->
   <url>
     <loc>https://www.babylonbsb.com.br/sobre</loc>
     <changefreq>yearly</changefreq>
     <priority>0.50</priority>
   </url>
 
-  <!-- Futura página de franquias Babylon -->
+  <!-- Página de franquias (para expansão futura) -->
   <url>
     <loc>https://www.babylonbsb.com.br/franquias</loc>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
   </url>
 
-  <!-- Contato dedicado -->
+  <!-- Página de contato dedicada -->
   <url>
     <loc>https://www.babylonbsb.com.br/contato</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
+  </url>
+
+
+  <!-- ======================================================
+       SUPORTE A VÍDEOS – Para futuros reels / teasers
+       (Google URL + YouTube)
+  ======================================================= -->
+
+  <!-- Exemplo configurado (pode duplicar quando tiver vídeos reais) -->
+  <url>
+    <loc>https://www.babylonbsb.com.br/</loc>
+    <video:video>
+      <video:title>Rooftop Babylon – Preview Conceitual</video:title>
+      <video:description>Jacuzzi, lareira, iluminação dourada e vibe exclusiva no topo da casa.</video:description>
+      <video:content_loc>https://www.babylonbsb.com.br/video/rooftop-preview.mp4</video:content_loc>
+      <video:thumbnail_loc>https://www.babylonbsb.com.br/img/thumbnail-rooftop.jpg</video:thumbnail_loc>
+      <video:quality>hd1080</video:quality>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
 
 </urlset>
