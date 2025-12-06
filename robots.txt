@@ -1,50 +1,152 @@
-# =========================
-# robots.txt – Babylon BSB
-# =========================
+##############################################
+# robots.txt avançado – Babylon BSB
+# Proteção + SEO + Indexação otimizada
+##############################################
 
+# --- REGRA GERAL PARA TODOS OS BOTS ---
 User-agent: *
 Allow: /
 
-# Directorias internas que você pode querer proteger no futuro
+# Proteger potenciais áreas privadas (mesmo que ainda não existam)
 Disallow: /admin/
 Disallow: /painel/
-Disallow: /tmp/
 Disallow: /private/
+Disallow: /tmp/
+Disallow: /backend/
+Disallow: /api-secret/
+Disallow: /config/
+Disallow: /database/
 
-# Sinal delicado pra alguns buscadores (Google ignora, Bing/Yandex respeitam)
-Crawl-delay: 5
+# Evitar scraping de arquivos sensíveis
+Disallow: /*.sql$
+Disallow: /*.zip$
+Disallow: /*.tar$
+Disallow: /*.gz$
+Disallow: /*.env$
 
-# Sitemap principal
+# Sitemap
 Sitemap: https://www.babylonbsb.com.br/sitemap.xml
 
 
-# =========================
-# Regras específicas por tipo de bot (opcional, mas bom para SEO)
-# =========================
-
-# Googlebot (indexação geral)
+##############################################################
+# === GOOGLEBOT (deve ter máxima liberdade) ===
+##############################################################
 User-agent: Googlebot
 Allow: /
-Disallow: /admin/
-Disallow: /painel/
-Disallow: /tmp/
+Allow: /images/
+Allow: /img/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
 Disallow: /private/
+Disallow: /tmp/
 
-# Bot de imagens do Google – garante que imagens da Babylon apareçam no Google Imagens
+# Otimiza velocidade: Google ignora Crawl-delay, mas deixamos clean
+
+
+##############################################################
+# === GOOGLE IMAGES ===
+##############################################################
 User-agent: Googlebot-Image
 Allow: /
 Disallow: /private/
 Disallow: /tmp/
 
-# Bot de anúncios do Google (caso use Google Ads no futuro)
+
+##############################################################
+# === GOOGLE ADS & GOOGLE MOBILE ===
+##############################################################
 User-agent: AdsBot-Google
 Allow: /
 
-# Bing
+User-agent: Googlebot-Mobile
+Allow: /
+
+
+##############################################################
+# === BING, YANDEX E DUCKDUCKGO (bot mais agressivos) ===
+##############################################################
 User-agent: Bingbot
 Allow: /
-Disallow: /admin/
-Disallow: /painel/
-Disallow: /tmp/
-Disallow: /private/
 Crawl-delay: 5
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 4
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 8
+
+
+##############################################################
+# === BLOQUEIO DE BOTS MALICIOSOS / SCRAPERS ===
+##############################################################
+
+# Bots conhecidos por copiar sites, textos, imagens e conteúdos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SEMrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Scrapers tipo GPT / datasets (protege sua marca e textos)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Evitar bots chineses/espiões de scraping
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+
+##############################################################
+# === BLOQUEIO DE CRAWLERS DE ARQUIVOS DINÂMICOS ===
+##############################################################
+Disallow: /api/
+Disallow: /functions/
+Disallow: /server/
+
+
+##############################################################
+# === AJUSTES FINAIS ===
+##############################################################
+# Permitir tudo para usuários reais via browser
+Allow: /*
+
+# Evitar indexação duplicada com parâmetros
+Disallow: /*?*
+Disallow: /*&*
+
+
+##############################################################
+# FIM DO ARQUIVO – Babylon BSB
+##############################################################
