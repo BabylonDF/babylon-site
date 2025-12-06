@@ -1,4 +1,50 @@
+# =========================
+# robots.txt – Babylon BSB
+# =========================
+
 User-agent: *
 Allow: /
 
+# Directorias internas que você pode querer proteger no futuro
+Disallow: /admin/
+Disallow: /painel/
+Disallow: /tmp/
+Disallow: /private/
+
+# Sinal delicado pra alguns buscadores (Google ignora, Bing/Yandex respeitam)
+Crawl-delay: 5
+
+# Sitemap principal
 Sitemap: https://www.babylonbsb.com.br/sitemap.xml
+
+
+# =========================
+# Regras específicas por tipo de bot (opcional, mas bom para SEO)
+# =========================
+
+# Googlebot (indexação geral)
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /painel/
+Disallow: /tmp/
+Disallow: /private/
+
+# Bot de imagens do Google – garante que imagens da Babylon apareçam no Google Imagens
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+
+# Bot de anúncios do Google (caso use Google Ads no futuro)
+User-agent: AdsBot-Google
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /painel/
+Disallow: /tmp/
+Disallow: /private/
+Crawl-delay: 5
