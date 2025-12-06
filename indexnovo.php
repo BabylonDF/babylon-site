@@ -1,3 +1,24 @@
+<?php
+// Arquivo que guarda a contagem
+$counterFile = __DIR__ . '/views.txt';
+
+// Se não existir, cria com 0
+if (!file_exists($counterFile)) {
+    file_put_contents($counterFile, 0);
+}
+
+// Lê o valor atual
+$views = (int) file_get_contents($counterFile);
+
+// Incrementa +1 a cada acesso
+$views++;
+
+// Salva de volta no arquivo
+file_put_contents($counterFile, $views);
+
+// Não mostra nada na tela – é só o contador rodando em background
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
