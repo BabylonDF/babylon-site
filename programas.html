@@ -37,8 +37,78 @@
       padding: 0 20px;
     }
 
+    .login-box {
+      max-width: 420px;
+      margin: 70px auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e1ddd5;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin: 0 0 10px;
+      color: #0f3d2e;
+    }
+
+    .login-box p {
+      color: #52645c;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #cfc8bd;
+      margin-top: 15px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #0f3d2e;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0b2f23;
+    }
+
+    .forgot {
+      display: inline-block;
+      margin-top: 18px;
+      color: #0f3d2e;
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      margin-top: 14px;
+      color: #b91c1c;
+      font-size: 14px;
+      display: none;
+    }
+
     .cards {
-      display: grid;
+      display: none;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
@@ -104,12 +174,36 @@
 <body>
   <header>
     <h1>Programas Babylon</h1>
-    <p>Escolha qual sistema deseja acessar</p>
+    <p>Área restrita — sistemas internos</p>
   </header>
 
   <main>
-    <div class="cards">
+    <section id="loginBox" class="login-box">
+      <h2>Acesso restrito</h2>
+      <p>Digite a senha para acessar os sistemas da Babylon.</p>
 
+      <input
+        type="password"
+        id="senha"
+        placeholder="Digite a senha"
+        onkeydown="if(event.key === 'Enter') validarSenha()"
+      />
+
+      <button onclick="validarSenha()">Entrar</button>
+
+      <div id="erro" class="error">
+        Senha incorreta. Tente novamente.
+      </div>
+
+      <a
+        class="forgot"
+        href="mailto:marcelovpessoa@gmail.com?subject=Esqueci%20a%20senha%20dos%20Programas%20Babylon&body=Olá,%20Marcelo.%20Esqueci%20a%20senha%20de%20acesso%20à%20página%20programas.html.%20Pode%20me%20encaminhar%20a%20senha?"
+      >
+        Esqueci a senha
+      </a>
+    </section>
+
+    <section id="cards" class="cards">
       <a class="card" href="https://cotacao-babylon.base44.app/">
         <div class="icon">📋</div>
         <h2>Página de Cotação</h2>
@@ -139,12 +233,39 @@
         </p>
         <span class="button-text">Abrir sistema →</span>
       </a>
-
-    </div>
+    </section>
   </main>
 
   <footer>
     Babylon BSB — Gastronomia, Cultura e Música
   </footer>
+
+  <script>
+    const SENHA_CORRETA = "1212";
+
+    function validarSenha() {
+      const senha = document.getElementById("senha").value;
+      const erro = document.getElementById("erro");
+      const loginBox = document.getElementById("loginBox");
+      const cards = document.getElementById("cards");
+
+      if (senha === SENHA_CORRETA) {
+        sessionStorage.setItem("babylon_programas_autorizado", "sim");
+        loginBox.style.display = "none";
+        cards.style.display = "grid";
+      } else {
+        erro.style.display = "block";
+      }
+    }
+
+    window.onload = function () {
+      const autorizado = sessionStorage.getItem("babylon_programas_autorizado");
+
+      if (autorizado === "sim") {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("cards").style.display = "grid";
+      }
+    };
+  </script>
 </body>
 </html>
