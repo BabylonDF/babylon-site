@@ -6,210 +6,631 @@
 
   <title>Programas Babylon</title>
 
+  <link rel="icon" type="image/png" href="https://www.babylonbsb.com.br/logo.png" />
+  <link rel="preload" href="https://www.babylonbsb.com.br/logo.png" as="image" />
+
   <style>
+    :root {
+      --bg-deep: #070401;
+      --gold: #ffd700;
+      --gold-soft: rgba(255, 215, 0, 0.22);
+      --text-main: #ffffff;
+      --text-soft: #f9f0d2;
+      --card-bg: rgba(10, 6, 0, 0.96);
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.85);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+      --danger: #b91c1c;
+      --danger-hover: #991b1b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f3ee;
-      color: #10251d;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top, rgba(255, 215, 0, 0.42), transparent 55%),
+        radial-gradient(circle at 30% 80%, rgba(255, 236, 179, 0.24), transparent 70%),
+        radial-gradient(circle at bottom, #120903, #000000);
+      background-attachment: fixed;
+      overflow-x: hidden;
     }
 
-    header {
-      background: #0f3d2e;
-      color: white;
-      padding: 32px 20px;
-      text-align: center;
+    .gradient-orbit {
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 215, 0, 0.48), transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(255, 230, 140, 0.38), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(30, 16, 0, 0.95), transparent 55%);
+      filter: blur(28px);
+      opacity: 0.85;
+      z-index: -3;
+      animation: floatGlow 18s ease-in-out infinite alternate;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+    @keyframes floatGlow {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(0, -40px, 0) scale(1.06); }
     }
 
-    header p {
-      margin-top: 8px;
-      font-size: 16px;
-      opacity: 0.9;
+    .gold-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background-image:
+        radial-gradient(circle, rgba(255, 215, 0, 0.6) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255, 215, 0, 0.3) 1px, transparent 1px);
+      background-size: 220px 220px, 320px 320px;
+      background-position: 0 0, 80px 120px;
+      mix-blend-mode: screen;
+      animation: particlesDrift 32s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes particlesDrift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-120px, -120px, 0); }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      mix-blend-mode: soft-light;
+      opacity: 0.32;
+      pointer-events: none;
+      z-index: -1;
     }
 
     main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 38px;
     }
 
-    .login-box {
-      max-width: 420px;
-      margin: 70px auto;
-      background: white;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e1ddd5;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 38px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      width: 104px;
+      height: 104px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.95));
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand-kicker {
+      font-size: clamp(0.72rem, 1.2vw, 0.84rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .brand-title {
+      font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tag-pill {
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.08));
+      font-size: clamp(0.7rem, 1.1vw, 0.78rem);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 20px var(--gold-soft);
+    }
+
+    .hero {
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.98));
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 32px 26px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 28px;
     }
 
-    .login-box h2 {
-      margin: 0 0 10px;
-      color: #0f3d2e;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, var(--gold-soft), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(184, 138, 31, 0.28), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
     }
 
-    .login-box p {
-      color: #52645c;
-      font-size: 15px;
-      line-height: 1.5;
+    .hero-inner {
+      position: relative;
+      z-index: 1;
     }
 
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #cfc8bd;
-      margin-top: 15px;
-      font-size: 16px;
-      text-align: center;
+    .hero-kicker {
+      font-size: clamp(0.75rem, 1.3vw, 0.88rem);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      margin-bottom: 12px;
     }
 
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #0f3d2e;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-    button:hover {
-      background: #0b2f23;
-    }
-
-    .forgot {
-      display: inline-block;
-      margin-top: 18px;
-      color: #0f3d2e;
-      font-size: 14px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .forgot:hover {
-      text-decoration: underline;
-    }
-
-    .error {
-      margin-top: 14px;
-      color: #b91c1c;
-      font-size: 14px;
-      display: none;
+    .hero-subtitle {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--text-soft);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.7;
     }
 
     .top-actions {
       display: none;
-      max-width: 1100px;
-      margin: 24px auto 0;
-      padding: 0 20px;
       text-align: right;
+      margin-bottom: 18px;
     }
 
     .logout-btn {
       width: auto;
       padding: 10px 18px;
-      border: none;
-      border-radius: 10px;
-      background: #b91c1c;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-pill);
+      background: rgba(185, 28, 28, 0.95);
       color: white;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
     }
 
     .logout-btn:hover {
-      background: #991b1b;
+      background: var(--danger-hover);
+      transform: translateY(-1px);
+    }
+
+    .login-box {
+      max-width: 480px;
+      margin: 42px auto 0;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+      backdrop-filter: blur(18px);
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 66px;
+      height: 66px;
+      border-radius: 22px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      font-size: 30px;
+      box-shadow: 0 0 28px rgba(255, 215, 0, 0.12);
+    }
+
+    .login-box h2 {
+      color: var(--gold);
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .login-box p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin-top: 16px;
+      font-size: 17px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.55);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(249, 240, 210, 0.5);
+    }
+
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.12);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--gold), #ffe97a);
+      color: #3d2800;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75), 0 0 30px rgba(248, 210, 106, 0.42);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 40px rgba(248, 210, 106, 0.65);
+    }
+
+    .forgot {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--gold);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dotted var(--gold);
+    }
+
+    .forgot:hover {
+      color: #ffe97a;
+    }
+
+    .error {
+      margin-top: 14px;
+      color: #fecaca;
+      background: rgba(185, 28, 28, 0.18);
+      border: 1px solid rgba(248, 113, 113, 0.28);
+      border-radius: 14px;
+      padding: 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .intro {
+      display: none;
+      margin: 30px 0 18px;
+      padding: 22px 24px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background: var(--card-bg);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(18px);
+    }
+
+    .intro span {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .intro h2 {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-bottom: 8px;
+    }
+
+    .intro p {
+      color: var(--text-soft);
+      line-height: 1.7;
+      max-width: 760px;
     }
 
     .cards {
       display: none;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
     }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
+    .program-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      padding: 22px;
+      min-height: 300px;
       text-decoration: none;
-      color: #10251d;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e1ddd5;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      display: block;
+      color: var(--text-main);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+    .program-card::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top right, rgba(255, 215, 0, 0.18), transparent 45%),
+        radial-gradient(circle at bottom left, rgba(255, 236, 179, 0.10), transparent 55%);
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 215, 0, 0.7);
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.95), 0 0 34px rgba(255, 215, 0, 0.12);
+    }
+
+    .program-card-content {
+      position: relative;
+      z-index: 1;
     }
 
     .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #e8f3ee;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.28);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      margin-bottom: 20px;
+      font-size: 28px;
+      margin-bottom: 18px;
     }
 
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 22px;
-      color: #0f3d2e;
+    .program-card small {
+      display: inline-block;
+      color: var(--text-soft);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.70rem;
+      margin-bottom: 10px;
+      opacity: 0.95;
     }
 
-    .card p {
-      margin: 0;
-      color: #52645c;
-      line-height: 1.5;
-      font-size: 15px;
+    .program-card h2 {
+      color: var(--gold);
+      font-size: 1.32rem;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .program-card p {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      line-height: 1.7;
     }
 
     .button-text {
+      position: relative;
+      z-index: 1;
       margin-top: 24px;
-      display: inline-block;
-      color: #0f3d2e;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
     }
 
     footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #6d7c75;
-      font-size: 14px;
+      margin-top: 42px;
+      padding: 18px 0 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(247, 236, 212, 0.95);
+      font-size: 0.78rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .footer-title {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      font-size: 0.78rem;
+      margin-bottom: 5px;
+    }
+
+    .footer-link {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--gold);
+    }
+
+    .footer-link:hover {
+      color: #ffe97a;
+    }
+
+    @media (max-width: 920px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tag-pill {
+        align-self: flex-start;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .program-card {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 24px 16px 30px;
+      }
+
+      .brand-area {
+        align-items: flex-start;
+      }
+
+      .logo {
+        width: 82px;
+        height: 82px;
+      }
+
+      .hero {
+        padding: 24px 18px;
+      }
+
+      .hero h1 {
+        letter-spacing: 0.13em;
+      }
+
+      .login-box {
+        margin-top: 30px;
+        padding: 24px 20px;
+      }
+
+      .top-actions {
+        text-align: center;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gradient-orbit,
+      .gold-particles {
+        animation: none;
+      }
+
+      * {
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Programas Babylon</h1>
-    <p>Área restrita — sistemas internos</p>
-  </header>
-
-  <div id="topActions" class="top-actions">
-    <button class="logout-btn" onclick="sair()">Sair</button>
-  </div>
+  <div class="gradient-orbit"></div>
+  <div class="gold-particles"></div>
+  <div class="noise-overlay"></div>
 
   <main>
+    <header>
+      <div class="brand-area">
+        <img
+          class="logo"
+          src="https://www.babylonbsb.com.br/logo.png"
+          alt="Logo Babylon BSB"
+        />
+
+        <div class="brand-text">
+          <div class="brand-kicker">Babylon Delicatessen & Música</div>
+          <div class="brand-title">Programas Babylon</div>
+        </div>
+      </div>
+
+      <div class="tag-pill">
+        <div class="tag-dot"></div>
+        Área restrita · sistemas internos
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">Gestão interna Babylon BSB</div>
+        <h1>Programas Babylon</h1>
+        <div class="hero-subtitle">
+          Cotações · financeiro · serviços obrigatórios
+        </div>
+      </div>
+    </section>
+
+    <div id="topActions" class="top-actions">
+      <button class="logout-btn" onclick="sair()">Sair</button>
+    </div>
+
     <section id="loginBox" class="login-box">
+      <div class="lock-icon">🔒</div>
       <h2>Acesso restrito</h2>
-      <p>Digite a senha para acessar os sistemas da Babylon.</p>
+      <p>Digite a senha para acessar os programas internos da Babylon.</p>
 
       <input
         type="password"
@@ -218,7 +639,7 @@
         onkeydown="if(event.key === 'Enter') validarSenha()"
       />
 
-      <button onclick="validarSenha()">Entrar</button>
+      <button onclick="validarSenha()">Entrar nos sistemas</button>
 
       <div id="erro" class="error">
         Senha incorreta. Tente novamente.
@@ -232,42 +653,88 @@
       </a>
     </section>
 
+    <section id="intro" class="intro">
+      <span>Sistemas internos</span>
+      <h2>Escolha o programa que deseja acessar</h2>
+      <p>
+        Ferramentas de operação da Babylon para cotações, compras,
+        financeiro, serviços obrigatórios, controle documental e gestão da casa.
+      </p>
+    </section>
+
     <section id="cards" class="cards">
-      <a class="card" href="https://cotacao-babylon.base44.app/">
-        <div class="icon">📋</div>
-        <h2>Página de Cotação</h2>
-        <p>
-          Sistema para controle de cotações, fornecedores, produtos,
-          propostas, pedidos e recebimentos da Babylon.
-        </p>
+      <a class="program-card" href="https://cotacao-babylon.base44.app/">
+        <div class="program-card-content">
+          <div class="icon">📋</div>
+          <small>Cotações e compras</small>
+          <h2>Página de Cotação</h2>
+          <p>
+            Sistema para controle de cotações, fornecedores, produtos,
+            propostas, pedidos, recebimentos e auditoria de compras.
+          </p>
+        </div>
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="card" href="https://app--controle-financeiro-babylon-bc532c72.base44.app/">
-        <div class="icon">💰</div>
-        <h2>Controle Financeiro</h2>
-        <p>
-          Sistema para acompanhamento financeiro, lançamentos,
-          pagamentos, receitas, despesas e relatórios da Babylon.
-        </p>
+      <a class="program-card" href="https://app--controle-financeiro-babylon-bc532c72.base44.app/">
+        <div class="program-card-content">
+          <div class="icon">💰</div>
+          <small>Gestão financeira</small>
+          <h2>Controle Financeiro</h2>
+          <p>
+            Sistema para acompanhamento financeiro, lançamentos, pagamentos,
+            receitas, despesas, fornecedores e relatórios da Babylon.
+          </p>
+        </div>
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="card" href="https://controle-servicos.base44.app/">
-        <div class="icon">🛠️</div>
-        <h2>Controle de Serviços Obrigatórios</h2>
-        <p>
-          Sistema para controle de dedetização, limpeza de coifas,
-          serviços obrigatórios, comprovantes e prazos.
-        </p>
+      <a class="program-card" href="https://controle-servicos.base44.app/">
+        <div class="program-card-content">
+          <div class="icon">🛠️</div>
+          <small>Serviços obrigatórios</small>
+          <h2>Controle de Serviços Obrigatórios</h2>
+          <p>
+            Controle de dedetização, limpeza de coifas, serviços obrigatórios,
+            comprovantes, prazos e documentos exigidos.
+          </p>
+        </div>
         <span class="button-text">Abrir sistema →</span>
       </a>
     </section>
-  </main>
 
-  <footer>
-    Babylon BSB — Gastronomia, Cultura e Música
-  </footer>
+    <footer>
+      <div>
+        <div class="footer-title">Babylon BSB</div>
+        <p>Gastronomia, Cultura e Música</p>
+        <p>QN 303 Conjunto 04 Loja 04 · Samambaia Sul · Brasília – DF</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Contato</div>
+        <p>
+          <a
+            class="footer-link"
+            href="https://wa.me/5561995097813"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp · (61) 99509-7813
+          </a>
+        </p>
+        <p>
+          <a
+            class="footer-link"
+            href="https://instagram.com/babylon.bsb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram · @babylon.bsb
+          </a>
+        </p>
+      </div>
+    </footer>
+  </main>
 
   <script>
     const SENHA_CORRETA = "1212";
@@ -277,12 +744,14 @@
       const erro = document.getElementById("erro");
       const loginBox = document.getElementById("loginBox");
       const cards = document.getElementById("cards");
+      const intro = document.getElementById("intro");
       const topActions = document.getElementById("topActions");
 
       if (senha === SENHA_CORRETA) {
         sessionStorage.setItem("babylon_programas_autorizado", "sim");
         loginBox.style.display = "none";
         cards.style.display = "grid";
+        intro.style.display = "block";
         topActions.style.display = "block";
         erro.style.display = "none";
       } else {
@@ -294,6 +763,7 @@
       sessionStorage.removeItem("babylon_programas_autorizado");
 
       document.getElementById("cards").style.display = "none";
+      document.getElementById("intro").style.display = "none";
       document.getElementById("topActions").style.display = "none";
       document.getElementById("loginBox").style.display = "block";
       document.getElementById("senha").value = "";
@@ -306,6 +776,7 @@
       if (autorizado === "sim") {
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("cards").style.display = "grid";
+        document.getElementById("intro").style.display = "block";
         document.getElementById("topActions").style.display = "block";
       }
     };
