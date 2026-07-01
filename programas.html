@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programas Babylon</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f3ee;
+      color: #10251d;
+    }
+
+    header {
+      background: #0f3d2e;
+      color: white;
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: #10251d;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e1ddd5;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: block;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #e8f3ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: #0f3d2e;
+    }
+
+    .card p {
+      margin: 0;
+      color: #52645c;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .button-text {
+      margin-top: 24px;
+      display: inline-block;
+      color: #0f3d2e;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6d7c75;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Programas Babylon</h1>
+    <p>Escolha qual sistema deseja acessar</p>
+  </header>
+
+  <main>
+    <div class="cards">
+
+      <a class="card" href="https://cotacao-babylon.base44.app/">
+        <div class="icon">📋</div>
+        <h2>Página de Cotação</h2>
+        <p>
+          Sistema para controle de cotações, fornecedores, produtos,
+          propostas, pedidos e recebimentos da Babylon.
+        </p>
+        <span class="button-text">Abrir sistema →</span>
+      </a>
+
+      <a class="card" href="https://app--controle-financeiro-babylon-bc532c72.base44.app/">
+        <div class="icon">💰</div>
+        <h2>Controle Financeiro</h2>
+        <p>
+          Sistema para acompanhamento financeiro, lançamentos,
+          pagamentos, receitas, despesas e relatórios da Babylon.
+        </p>
+        <span class="button-text">Abrir sistema →</span>
+      </a>
+
+      <a class="card" href="https://controle-servicos.base44.app/">
+        <div class="icon">🛠️</div>
+        <h2>Controle de Serviços Obrigatórios</h2>
+        <p>
+          Sistema para controle de dedetização, limpeza de coifas,
+          serviços obrigatórios, comprovantes e prazos.
+        </p>
+        <span class="button-text">Abrir sistema →</span>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    Babylon BSB — Gastronomia, Cultura e Música
+  </footer>
+</body>
+</html>
