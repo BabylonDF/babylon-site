@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Programas Babylon</title>
 
   <style>
@@ -107,6 +108,30 @@
       display: none;
     }
 
+    .top-actions {
+      display: none;
+      max-width: 1100px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+      text-align: right;
+    }
+
+    .logout-btn {
+      width: auto;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: #b91c1c;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #991b1b;
+    }
+
     .cards {
       display: none;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -176,6 +201,10 @@
     <h1>Programas Babylon</h1>
     <p>Área restrita — sistemas internos</p>
   </header>
+
+  <div id="topActions" class="top-actions">
+    <button class="logout-btn" onclick="sair()">Sair</button>
+  </div>
 
   <main>
     <section id="loginBox" class="login-box">
@@ -248,14 +277,27 @@
       const erro = document.getElementById("erro");
       const loginBox = document.getElementById("loginBox");
       const cards = document.getElementById("cards");
+      const topActions = document.getElementById("topActions");
 
       if (senha === SENHA_CORRETA) {
         sessionStorage.setItem("babylon_programas_autorizado", "sim");
         loginBox.style.display = "none";
         cards.style.display = "grid";
+        topActions.style.display = "block";
+        erro.style.display = "none";
       } else {
         erro.style.display = "block";
       }
+    }
+
+    function sair() {
+      sessionStorage.removeItem("babylon_programas_autorizado");
+
+      document.getElementById("cards").style.display = "none";
+      document.getElementById("topActions").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+      document.getElementById("senha").value = "";
+      document.getElementById("erro").style.display = "none";
     }
 
     window.onload = function () {
@@ -264,6 +306,7 @@
       if (autorizado === "sim") {
         document.getElementById("loginBox").style.display = "none";
         document.getElementById("cards").style.display = "grid";
+        document.getElementById("topActions").style.display = "block";
       }
     };
   </script>
