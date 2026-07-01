@@ -118,26 +118,13 @@
       filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.95));
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
     .brand-kicker {
       font-size: clamp(0.72rem, 1.2vw, 0.84rem);
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 700;
-    }
-
-    .brand-title {
-      font-size: clamp(1.25rem, 2.4vw, 1.9rem);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-      color: var(--text-main);
+      white-space: nowrap;
     }
 
     .tag-pill {
@@ -326,20 +313,6 @@
       transform: translateY(-2px);
       filter: brightness(1.05);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 40px rgba(248, 210, 106, 0.65);
-    }
-
-    .forgot {
-      display: inline-block;
-      margin-top: 18px;
-      color: var(--gold);
-      font-size: 0.9rem;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px dotted var(--gold);
-    }
-
-    .forgot:hover {
-      color: #ffe97a;
     }
 
     .error {
@@ -552,6 +525,11 @@
         height: 82px;
       }
 
+      .brand-kicker {
+        white-space: normal;
+        line-height: 1.5;
+      }
+
       .hero {
         padding: 24px 18px;
       }
@@ -601,9 +579,8 @@
           alt="Logo Babylon BSB"
         />
 
-        <div class="brand-text">
-          <div class="brand-kicker">Babylon Delicatessen & Música</div>
-          <div class="brand-title">Programas Babylon</div>
+        <div class="brand-kicker">
+          Babylon Delicatessen & Música
         </div>
       </div>
 
@@ -644,13 +621,6 @@
       <div id="erro" class="error">
         Senha incorreta. Tente novamente.
       </div>
-
-      <a
-        class="forgot"
-        href="mailto:marcelovpessoa@gmail.com?subject=Esqueci%20a%20senha%20dos%20Programas%20Babylon&body=Olá,%20Marcelo.%20Esqueci%20a%20senha%20de%20acesso%20à%20página%20programas.html.%20Pode%20me%20encaminhar%20a%20senha?"
-      >
-        Esqueci a senha
-      </a>
     </section>
 
     <section id="intro" class="intro">
