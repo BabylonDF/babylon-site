@@ -1090,9 +1090,12 @@
       }
     );
 
+    const ADMIN_USER_ID = "7555eed6-02ed-4a0f-994d-0272df5a0e8e";
+
     let modoOrganizacao = false;
     let cardArrastado = null;
     let pointerIdAtivo = null;
+    let usuarioPodeOrganizar = false;
 
     const ordemPadrao = [
       "gestao-operacional",
@@ -1120,6 +1123,27 @@
       el.className = "status-message";
     }
 
+    async function atualizarPermissaoOrganizacao() {
+      const organizarBtn = document.getElementById("organizarBtn");
+
+      try {
+        const { data, error } = await supabaseClient.auth.getUser();
+
+        if (error) throw error;
+
+        usuarioPodeOrganizar = data?.user?.id === ADMIN_USER_ID;
+      } catch (erro) {
+        console.error("Não foi possível verificar a permissão de organização:", erro);
+        usuarioPodeOrganizar = false;
+      }
+
+      if (organizarBtn) {
+        organizarBtn.style.display = usuarioPodeOrganizar ? "" : "none";
+      }
+
+      return usuarioPodeOrganizar;
+    }
+
     function exibirAreaInterna() {
       document.getElementById("loginBox").style.display = "none";
       document.getElementById("cards").style.display = "grid";
@@ -1133,7 +1157,8 @@
 
       document.getElementById("cards").classList.remove("organizing");
       document.getElementById("organizeBar").classList.remove("active");
-      document.getElementById("organizarBtn").style.display = "";
+      document.getElementById("organizarBtn").style.display = "none";
+      usuarioPodeOrganizar = false;
       document.getElementById("cards").style.display = "none";
       document.getElementById("intro").style.display = "none";
       document.getElementById("topActions").style.display = "none";
@@ -1169,6 +1194,7 @@
 
         document.getElementById("loginPassword").value = "";
         exibirAreaInterna();
+        await atualizarPermissaoOrganizacao();
         await carregarOrdemCards();
       } catch (erroLogin) {
         console.error("Erro no login:", erroLogin);
@@ -1338,6 +1364,17 @@
         return;
       }
 
+      const permitido = await atualizarPermissaoOrganizacao();
+
+      if (!permitido) {
+        mostrarStatus(
+          "orderStatus",
+          "Este usuário não tem permissão para organizar os cards.",
+          "error"
+        );
+        return;
+      }
+
       ativarModoOrganizacao();
     }
 
@@ -1364,7 +1401,7 @@
 
       document.getElementById("cards").classList.remove("organizing");
       document.getElementById("organizeBar").classList.remove("active");
-      document.getElementById("organizarBtn").style.display = "";
+      document.getElementById("organizarBtn").style.display = usuarioPodeOrganizar ? "" : "none";
 
       await carregarOrdemCards();
       limparStatus("orderStatus");
@@ -1382,6 +1419,12 @@
 
         if (!sessao?.session) {
           throw new Error("Sessão autenticada não encontrada.");
+        }
+
+        const permitido = await atualizarPermissaoOrganizacao();
+
+        if (!permitido) {
+          throw new Error("Usuário sem permissão para organizar os cards.");
         }
 
         const { error } = await supabaseClient
@@ -1402,7 +1445,7 @@
 
         modoOrganizacao = false;
         document.getElementById("cards").classList.remove("organizing");
-        document.getElementById("organizarBtn").style.display = "";
+        document.getElementById("organizarBtn").style.display = usuarioPodeOrganizar ? "" : "none";
 
         setTimeout(() => {
           document.getElementById("organizeBar").classList.remove("active");
@@ -1437,6 +1480,7 @@
 
       if (event === "SIGNED_IN" && session) {
         exibirAreaInterna();
+        atualizarPermissaoOrganizacao();
       }
     });
 
@@ -1447,6 +1491,7 @@
 
       if (data?.session) {
         exibirAreaInterna();
+        await atualizarPermissaoOrganizacao();
       } else {
         exibirLogin();
       }
