@@ -884,20 +884,32 @@
     <section id="loginBox" class="login-box">
       <div class="lock-icon">🔒</div>
       <h2>Acesso restrito</h2>
-      <p>Digite a senha para acessar os programas internos da Babylon.</p>
+      <p>Entre com o e-mail e a senha cadastrados no sistema Babylon.</p>
+
+      <input
+        type="email"
+        id="loginEmail"
+        autocomplete="username"
+        placeholder="E-mail"
+      />
 
       <input
         type="password"
-        id="senha"
-        placeholder="Digite a senha"
-        onkeydown="if(event.key === 'Enter') validarSenha()"
+        id="loginPassword"
+        autocomplete="current-password"
+        placeholder="Senha"
+        onkeydown="if(event.key === 'Enter') fazerLogin()"
       />
 
-      <button onclick="validarSenha()">Entrar nos sistemas</button>
+      <button id="loginBtn" onclick="fazerLogin()">Entrar nos sistemas</button>
 
       <div id="erro" class="error">
-        Senha incorreta. Tente novamente.
+        Não foi possível entrar. Confira o e-mail e a senha.
       </div>
+
+      <p style="margin-top: 16px; margin-bottom: 0; font-size: 0.78rem; opacity: 0.72;">
+        A senha é validada pelo Supabase Auth e não fica gravada no código HTML.
+      </p>
     </section>
 
     <section id="intro" class="intro">
@@ -1055,49 +1067,10 @@
     </footer>
   </main>
 
-  <div id="adminModal" class="admin-modal" aria-hidden="true">
-    <div class="admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
-      <div class="admin-modal-head">
-        <div>
-          <h2 id="adminModalTitle">Acesso administrativo</h2>
-          <p>Entre com o usuário administrador criado no Supabase para reorganizar os cards.</p>
-        </div>
-
-        <button class="modal-close" type="button" aria-label="Fechar" onclick="fecharAdminModal()">×</button>
-      </div>
-
-      <input
-        type="email"
-        id="adminEmail"
-        autocomplete="username"
-        placeholder="E-mail do administrador"
-      />
-
-      <input
-        type="password"
-        id="adminPassword"
-        autocomplete="current-password"
-        placeholder="Senha do administrador"
-        onkeydown="if(event.key === 'Enter') autenticarAdministrador()"
-      />
-
-      <button id="adminLoginBtn" class="admin-login-btn" onclick="autenticarAdministrador()">
-        Entrar para organizar
-      </button>
-
-      <div id="adminStatus" class="status-message"></div>
-
-      <div class="admin-hint">
-        A ordem dos cards é salva online no Supabase. Nenhuma ordem é gravada em localStorage.
-      </div>
-    </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const SENHA_CORRETA = "1212";
-
     const SUPABASE_URL = "https://qqmecinslmzxohlrvdal.supabase.co";
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_XTCtIbVTSKkpHSHiYozcWQ_N9DA2UH3";
@@ -1107,7 +1080,10 @@
       SUPABASE_PUBLISHABLE_KEY,
       {
         auth: {
-          persistSession: false,
+          // Mantém a sessão apenas nesta aba do navegador.
+          // A senha nunca é gravada no HTML.
+          persistSession: true,
+          storage: window.sessionStorage,
           autoRefreshToken: true,
           detectSessionInUrl: false
         }
@@ -1142,6 +1118,76 @@
 
       el.textContent = "";
       el.className = "status-message";
+    }
+
+    function exibirAreaInterna() {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("cards").style.display = "grid";
+      document.getElementById("intro").style.display = "block";
+      document.getElementById("topActions").style.display = "block";
+      document.getElementById("erro").style.display = "none";
+    }
+
+    function exibirLogin() {
+      modoOrganizacao = false;
+
+      document.getElementById("cards").classList.remove("organizing");
+      document.getElementById("organizeBar").classList.remove("active");
+      document.getElementById("organizarBtn").style.display = "";
+      document.getElementById("cards").style.display = "none";
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("topActions").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+      document.getElementById("loginPassword").value = "";
+      document.getElementById("erro").style.display = "none";
+    }
+
+    async function fazerLogin() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const erro = document.getElementById("erro");
+      const botao = document.getElementById("loginBtn");
+
+      erro.style.display = "none";
+
+      if (!email || !password) {
+        erro.textContent = "Informe o e-mail e a senha.";
+        erro.style.display = "block";
+        return;
+      }
+
+      botao.disabled = true;
+      botao.textContent = "Entrando...";
+
+      try {
+        const { error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        document.getElementById("loginPassword").value = "";
+        exibirAreaInterna();
+        await carregarOrdemCards();
+      } catch (erroLogin) {
+        console.error("Erro no login:", erroLogin);
+        erro.textContent = "Não foi possível entrar. Confira o e-mail e a senha.";
+        erro.style.display = "block";
+      } finally {
+        botao.disabled = false;
+        botao.textContent = "Entrar nos sistemas";
+      }
+    }
+
+    async function sair() {
+      try {
+        await supabaseClient.auth.signOut();
+      } catch (erro) {
+        console.error("Erro ao encerrar a sessão:", erro);
+      }
+
+      exibirLogin();
     }
 
     async function carregarOrdemCards() {
@@ -1279,121 +1325,20 @@
       pointerIdAtivo = null;
     }
 
-    function validarSenha() {
-      const senha = document.getElementById("senha").value;
-      const erro = document.getElementById("erro");
-      const loginBox = document.getElementById("loginBox");
-      const cards = document.getElementById("cards");
-      const intro = document.getElementById("intro");
-      const topActions = document.getElementById("topActions");
-
-      if (senha === SENHA_CORRETA) {
-        sessionStorage.setItem("babylon_programas_autorizado", "sim");
-        loginBox.style.display = "none";
-        cards.style.display = "grid";
-        intro.style.display = "block";
-        topActions.style.display = "block";
-        erro.style.display = "none";
-
-        carregarOrdemCards();
-      } else {
-        erro.style.display = "block";
-      }
-    }
-
-    async function sair() {
-      await supabaseClient.auth.signOut();
-
-      modoOrganizacao = false;
-
-      document.getElementById("cards").classList.remove("organizing");
-      document.getElementById("organizeBar").classList.remove("active");
-      document.getElementById("organizarBtn").style.display = "";
-      document.getElementById("cards").style.display = "none";
-      document.getElementById("intro").style.display = "none";
-      document.getElementById("topActions").style.display = "none";
-      document.getElementById("loginBox").style.display = "block";
-      document.getElementById("senha").value = "";
-      document.getElementById("erro").style.display = "none";
-
-      sessionStorage.removeItem("babylon_programas_autorizado");
-
-      fecharAdminModal();
-    }
-
     async function solicitarOrganizacao() {
-      limparStatus("adminStatus");
       limparStatus("orderStatus");
 
       const { data } = await supabaseClient.auth.getSession();
 
-      if (data?.session) {
-        ativarModoOrganizacao();
+      if (!data?.session) {
+        exibirLogin();
+        document.getElementById("erro").textContent =
+          "Sua sessão expirou. Entre novamente para continuar.";
+        document.getElementById("erro").style.display = "block";
         return;
       }
 
-      abrirAdminModal();
-    }
-
-    function abrirAdminModal() {
-      const modal = document.getElementById("adminModal");
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-
-      setTimeout(() => {
-        document.getElementById("adminEmail").focus();
-      }, 50);
-    }
-
-    function fecharAdminModal() {
-      const modal = document.getElementById("adminModal");
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-
-      document.getElementById("adminPassword").value = "";
-      limparStatus("adminStatus");
-    }
-
-    async function autenticarAdministrador() {
-      const email = document.getElementById("adminEmail").value.trim();
-      const password = document.getElementById("adminPassword").value;
-      const botao = document.getElementById("adminLoginBtn");
-
-      limparStatus("adminStatus");
-
-      if (!email || !password) {
-        mostrarStatus(
-          "adminStatus",
-          "Informe o e-mail e a senha do administrador.",
-          "error"
-        );
-        return;
-      }
-
-      botao.disabled = true;
-      botao.textContent = "Entrando...";
-
-      try {
-        const { error } = await supabaseClient.auth.signInWithPassword({
-          email,
-          password
-        });
-
-        if (error) throw error;
-
-        fecharAdminModal();
-        ativarModoOrganizacao();
-      } catch (erro) {
-        console.error("Erro no login administrativo:", erro);
-        mostrarStatus(
-          "adminStatus",
-          "Não foi possível entrar. Confira o e-mail e a senha.",
-          "error"
-        );
-      } finally {
-        botao.disabled = false;
-        botao.textContent = "Entrar para organizar";
-      }
+      ativarModoOrganizacao();
     }
 
     function ativarModoOrganizacao() {
@@ -1422,8 +1367,6 @@
       document.getElementById("organizarBtn").style.display = "";
 
       await carregarOrdemCards();
-      await supabaseClient.auth.signOut();
-
       limparStatus("orderStatus");
     }
 
@@ -1438,7 +1381,7 @@
         const { data: sessao } = await supabaseClient.auth.getSession();
 
         if (!sessao?.session) {
-          throw new Error("Sessão administrativa não encontrada.");
+          throw new Error("Sessão autenticada não encontrada.");
         }
 
         const { error } = await supabaseClient
@@ -1461,8 +1404,6 @@
         document.getElementById("cards").classList.remove("organizing");
         document.getElementById("organizarBtn").style.display = "";
 
-        await supabaseClient.auth.signOut();
-
         setTimeout(() => {
           document.getElementById("organizeBar").classList.remove("active");
           limparStatus("orderStatus");
@@ -1472,7 +1413,7 @@
 
         mostrarStatus(
           "orderStatus",
-          "Não foi possível salvar a ordem. Entre novamente como administrador e tente outra vez.",
+          "Não foi possível salvar a ordem. Verifique sua sessão e tente novamente.",
           "error"
         );
       }
@@ -1488,23 +1429,26 @@
       }
     });
 
-    // Fecha o modal administrativo ao clicar fora da caixa.
-    document.getElementById("adminModal").addEventListener("click", event => {
-      if (event.target.id === "adminModal") {
-        fecharAdminModal();
+    // Se a sessão for encerrada por qualquer motivo, volta para a tela de login.
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        exibirLogin();
+      }
+
+      if (event === "SIGNED_IN" && session) {
+        exibirAreaInterna();
       }
     });
 
     window.onload = async function () {
       await carregarOrdemCards();
 
-      const autorizado = sessionStorage.getItem("babylon_programas_autorizado");
+      const { data } = await supabaseClient.auth.getSession();
 
-      if (autorizado === "sim") {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("cards").style.display = "grid";
-        document.getElementById("intro").style.display = "block";
-        document.getElementById("topActions").style.display = "block";
+      if (data?.session) {
+        exibirAreaInterna();
+      } else {
+        exibirLogin();
       }
     };
   </script>
