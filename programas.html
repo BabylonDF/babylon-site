@@ -415,9 +415,20 @@
     }
 
     .program-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255, 215, 0, 0.7);
-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.95), 0 0 34px rgba(255, 215, 0, 0.12);
+      transform: translateY(-3px);
+      background: var(--card-bg);
+      border-color: var(--border-soft);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.92);
+    }
+
+    /* Evita que um card pareça selecionado depois de clicar, tocar ou arrastar. */
+    .program-card:focus,
+    .program-card:focus-visible,
+    .program-card:active {
+      background: var(--card-bg);
+      border-color: var(--border-soft);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+      outline: none;
     }
 
     .program-card-content {
