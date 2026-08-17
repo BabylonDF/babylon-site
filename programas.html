@@ -287,6 +287,63 @@
       margin-bottom: 8px;
     }
 
+    .forgot-password-btn {
+      width: auto;
+      margin: 14px auto 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      color: var(--gold);
+      box-shadow: none;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: none;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .forgot-password-btn:hover {
+      transform: none;
+      filter: none;
+      box-shadow: none;
+      color: #ffe97a;
+    }
+
+    .login-status {
+      display: none;
+      margin-top: 14px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .login-status.show {
+      display: block;
+    }
+
+    .login-status.ok {
+      color: #dcfce7;
+      background: rgba(22, 101, 52, 0.22);
+      border: 1px solid rgba(74, 222, 128, 0.35);
+    }
+
+    .login-status.error {
+      color: #fecaca;
+      background: rgba(185, 28, 28, 0.18);
+      border: 1px solid rgba(248, 113, 113, 0.28);
+    }
+
+    .reset-box {
+      display: none;
+    }
+
+    .reset-box.active {
+      display: block;
+    }
+
     input {
       width: 100%;
       padding: 15px;
@@ -903,13 +960,50 @@
 
       <button id="loginBtn" onclick="fazerLogin()">Entrar nos sistemas</button>
 
+      <button
+        type="button"
+        class="forgot-password-btn"
+        onclick="solicitarRecuperacaoSenha()"
+      >
+        Esqueci minha senha
+      </button>
+
       <div id="erro" class="error">
         Não foi possível entrar. Confira o e-mail e a senha.
       </div>
 
+      <div id="loginStatus" class="login-status"></div>
+
       <p style="margin-top: 16px; margin-bottom: 0; font-size: 0.78rem; opacity: 0.72;">
         A senha é validada pelo Supabase Auth e não fica gravada no código HTML.
       </p>
+    </section>
+
+    <section id="resetBox" class="login-box reset-box">
+      <div class="lock-icon">🔑</div>
+      <h2>Criar nova senha</h2>
+      <p>Digite uma nova senha para sua conta Babylon.</p>
+
+      <input
+        type="password"
+        id="novaSenha"
+        autocomplete="new-password"
+        placeholder="Nova senha"
+      />
+
+      <input
+        type="password"
+        id="confirmarNovaSenha"
+        autocomplete="new-password"
+        placeholder="Confirmar nova senha"
+        onkeydown="if(event.key === 'Enter') salvarNovaSenha()"
+      />
+
+      <button id="salvarNovaSenhaBtn" onclick="salvarNovaSenha()">
+        Salvar nova senha
+      </button>
+
+      <div id="resetStatus" class="login-status"></div>
     </section>
 
     <section id="intro" class="intro">
@@ -1085,7 +1179,7 @@
           persistSession: true,
           storage: window.sessionStorage,
           autoRefreshToken: true,
-          detectSessionInUrl: false
+          detectSessionInUrl: true
         }
       }
     );
@@ -1099,6 +1193,7 @@
     let cardArrastado = null;
     let pointerIdAtivo = null;
     let usuarioPodeOrganizar = false;
+    let emRecuperacaoSenha = false;
 
     const ordemPadrao = [
       "gestao-operacional",
@@ -1126,6 +1221,46 @@
       el.className = "status-message";
     }
 
+    function mostrarLoginStatus(mensagem, tipo = "ok") {
+      const el = document.getElementById("loginStatus");
+      if (!el) return;
+
+      el.textContent = mensagem;
+      el.className = `login-status show ${tipo}`;
+    }
+
+    function limparLoginStatus() {
+      const el = document.getElementById("loginStatus");
+      if (!el) return;
+
+      el.textContent = "";
+      el.className = "login-status";
+    }
+
+    function mostrarResetStatus(mensagem, tipo = "ok") {
+      const el = document.getElementById("resetStatus");
+      if (!el) return;
+
+      el.textContent = mensagem;
+      el.className = `login-status show ${tipo}`;
+    }
+
+    function exibirTelaNovaSenha() {
+      emRecuperacaoSenha = true;
+
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("resetBox").classList.add("active");
+      document.getElementById("cards").style.display = "none";
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("topActions").style.display = "none";
+      document.getElementById("organizeBar").classList.remove("active");
+      document.getElementById("organizarBtn").style.display = "none";
+
+      setTimeout(() => {
+        document.getElementById("novaSenha")?.focus();
+      }, 50);
+    }
+
     async function atualizarPermissaoOrganizacao() {
       const organizarBtn = document.getElementById("organizarBtn");
 
@@ -1148,7 +1283,10 @@
     }
 
     function exibirAreaInterna() {
+      if (emRecuperacaoSenha) return;
+
       document.getElementById("loginBox").style.display = "none";
+      document.getElementById("resetBox").classList.remove("active");
       document.getElementById("cards").style.display = "grid";
       document.getElementById("intro").style.display = "block";
       document.getElementById("topActions").style.display = "block";
@@ -1157,7 +1295,9 @@
 
     function exibirLogin() {
       modoOrganizacao = false;
+      emRecuperacaoSenha = false;
 
+      document.getElementById("resetBox").classList.remove("active");
       document.getElementById("cards").classList.remove("organizing");
       document.getElementById("organizeBar").classList.remove("active");
       document.getElementById("organizarBtn").style.display = "none";
@@ -1167,7 +1307,107 @@
       document.getElementById("topActions").style.display = "none";
       document.getElementById("loginBox").style.display = "block";
       document.getElementById("loginPassword").value = "";
+      document.getElementById("novaSenha").value = "";
+      document.getElementById("confirmarNovaSenha").value = "";
       document.getElementById("erro").style.display = "none";
+      limparLoginStatus();
+    }
+
+    async function solicitarRecuperacaoSenha() {
+      const emailInput = document.getElementById("loginEmail");
+      const email = emailInput.value.trim();
+
+      document.getElementById("erro").style.display = "none";
+      limparLoginStatus();
+
+      if (!email) {
+        mostrarLoginStatus(
+          "Digite primeiro o seu e-mail no campo acima e depois clique em “Esqueci minha senha”.",
+          "error"
+        );
+        emailInput.focus();
+        return;
+      }
+
+      try {
+        const redirectTo = window.location.origin + window.location.pathname;
+
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(
+          email,
+          { redirectTo }
+        );
+
+        if (error) throw error;
+
+        mostrarLoginStatus(
+          "Se esse e-mail estiver cadastrado, enviaremos uma mensagem com o link para criar uma nova senha. Verifique também a caixa de spam.",
+          "ok"
+        );
+      } catch (erroRecuperacao) {
+        console.error("Erro ao solicitar recuperação de senha:", erroRecuperacao);
+
+        mostrarLoginStatus(
+          "Não foi possível enviar o e-mail de recuperação agora. Tente novamente em alguns instantes.",
+          "error"
+        );
+      }
+    }
+
+    async function salvarNovaSenha() {
+      const novaSenha = document.getElementById("novaSenha").value;
+      const confirmar = document.getElementById("confirmarNovaSenha").value;
+      const botao = document.getElementById("salvarNovaSenhaBtn");
+
+      if (novaSenha.length < 8) {
+        mostrarResetStatus(
+          "A nova senha deve ter pelo menos 8 caracteres.",
+          "error"
+        );
+        return;
+      }
+
+      if (novaSenha !== confirmar) {
+        mostrarResetStatus(
+          "As duas senhas não são iguais. Digite novamente.",
+          "error"
+        );
+        return;
+      }
+
+      botao.disabled = true;
+      botao.textContent = "Salvando...";
+
+      try {
+        const { error } = await supabaseClient.auth.updateUser({
+          password: novaSenha
+        });
+
+        if (error) throw error;
+
+        mostrarResetStatus(
+          "Senha alterada com sucesso. Você será direcionado para o login.",
+          "ok"
+        );
+
+        setTimeout(async () => {
+          await supabaseClient.auth.signOut();
+          exibirLogin();
+          mostrarLoginStatus(
+            "Sua senha foi alterada. Entre com a nova senha.",
+            "ok"
+          );
+        }, 1400);
+      } catch (erroAlteracao) {
+        console.error("Erro ao alterar senha:", erroAlteracao);
+
+        mostrarResetStatus(
+          "Não foi possível alterar a senha. Solicite um novo link de recuperação.",
+          "error"
+        );
+      } finally {
+        botao.disabled = false;
+        botao.textContent = "Salvar nova senha";
+      }
     }
 
     async function fazerLogin() {
@@ -1177,6 +1417,7 @@
       const botao = document.getElementById("loginBtn");
 
       erro.style.display = "none";
+      limparLoginStatus();
 
       if (!email || !password) {
         erro.textContent = "Informe o e-mail e a senha.";
@@ -1477,11 +1718,16 @@
 
     // Se a sessão for encerrada por qualquer motivo, volta para a tela de login.
     supabaseClient.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        exibirTelaNovaSenha();
+        return;
+      }
+
       if (event === "SIGNED_OUT") {
         exibirLogin();
       }
 
-      if (event === "SIGNED_IN" && session) {
+      if (event === "SIGNED_IN" && session && !emRecuperacaoSenha) {
         exibirAreaInterna();
         atualizarPermissaoOrganizacao();
       }
@@ -1491,6 +1737,10 @@
       await carregarOrdemCards();
 
       const { data } = await supabaseClient.auth.getSession();
+
+      if (emRecuperacaoSenha) {
+        return;
+      }
 
       if (data?.session) {
         exibirAreaInterna();
