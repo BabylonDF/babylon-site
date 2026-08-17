@@ -478,6 +478,214 @@
       font-size: 0.78rem;
     }
 
+
+    /* ===== ORGANIZAÇÃO DOS CARDS / SUPABASE ===== */
+    .top-actions-inner {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .manage-btn,
+    .save-order-btn,
+    .cancel-order-btn {
+      width: auto;
+      margin-top: 0;
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    .manage-btn {
+      background: linear-gradient(135deg, var(--gold), #ffe97a);
+      color: #3d2800;
+    }
+
+    .organize-bar {
+      display: none;
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      background: rgba(10, 6, 0, 0.96);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .organize-bar.active {
+      display: flex;
+    }
+
+    .organize-info {
+      color: var(--text-soft);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .organize-info strong {
+      color: var(--gold);
+    }
+
+    .organize-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .save-order-btn {
+      background: linear-gradient(135deg, var(--gold), #ffe97a);
+      color: #3d2800;
+    }
+
+    .cancel-order-btn {
+      background: rgba(255, 255, 255, 0.10);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .drag-handle {
+      display: none;
+      position: relative;
+      z-index: 3;
+      margin-bottom: 14px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 215, 0, 0.65);
+      background: rgba(255, 215, 0, 0.10);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .cards.organizing .drag-handle {
+      display: block;
+    }
+
+    .cards.organizing .program-card {
+      border-color: rgba(255, 215, 0, 0.42);
+      cursor: default;
+    }
+
+    .cards.organizing .program-card:hover {
+      transform: none;
+    }
+
+    .program-card.dragging-card {
+      opacity: 0.58;
+      transform: scale(0.985);
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.55), 0 20px 48px rgba(0, 0, 0, 0.95);
+    }
+
+    .status-message {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .status-message.show {
+      display: block;
+    }
+
+    .status-message.ok {
+      color: #dcfce7;
+      background: rgba(22, 101, 52, 0.28);
+      border: 1px solid rgba(74, 222, 128, 0.32);
+    }
+
+    .status-message.error {
+      color: #fecaca;
+      background: rgba(185, 28, 28, 0.22);
+      border: 1px solid rgba(248, 113, 113, 0.30);
+    }
+
+    .admin-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .admin-modal.open {
+      display: flex;
+    }
+
+    .admin-modal-card {
+      width: min(460px, 100%);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 215, 0, 0.24);
+      background: #0b0702;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95);
+      padding: 26px;
+    }
+
+    .admin-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+
+    .admin-modal h2 {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 1.25rem;
+    }
+
+    .admin-modal p {
+      color: var(--text-soft);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .modal-close {
+      width: 38px;
+      height: 38px;
+      margin: 0;
+      padding: 0;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      box-shadow: none;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .admin-modal input {
+      text-align: left;
+    }
+
+    .admin-login-btn {
+      margin-top: 18px;
+    }
+
+    .admin-hint {
+      margin-top: 12px;
+      color: rgba(249, 240, 210, 0.72);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
     footer {
       margin-top: 42px;
       padding: 18px 0 4px;
@@ -648,13 +856,18 @@
         <div class="hero-kicker">Gestão interna Babylon BSB</div>
         <h1>Programas Babylon</h1>
         <div class="hero-subtitle">
-          Cotações · financeiro · serviços obrigatórios · equipamentos · presença
+          Cotações · financeiro · caixa · serviços obrigatórios · equipamentos · presença
         </div>
       </div>
     </section>
 
     <div id="topActions" class="top-actions">
-      <button class="logout-btn" onclick="sair()">Sair</button>
+      <div class="top-actions-inner">
+        <button id="organizarBtn" class="manage-btn" onclick="solicitarOrganizacao()">
+          ⚙️ Organizar cards
+        </button>
+        <button class="logout-btn" onclick="sair()">Sair</button>
+      </div>
     </div>
 
     <section id="loginBox" class="login-box">
@@ -686,8 +899,22 @@
       </p>
     </section>
 
+    <section id="organizeBar" class="organize-bar">
+      <div class="organize-info">
+        <strong>Modo de organização ativo.</strong><br />
+        Arraste os cards pelo botão “☰ Arraste para mover” e depois salve a nova ordem.
+      </div>
+
+      <div class="organize-actions">
+        <button class="cancel-order-btn" onclick="cancelarOrganizacao()">Cancelar</button>
+        <button class="save-order-btn" onclick="salvarOrdem()">💾 Salvar ordem</button>
+      </div>
+
+      <div id="orderStatus" class="status-message" style="flex-basis: 100%;"></div>
+    </section>
+
     <section id="cards" class="cards">
-      <a class="program-card" href="https://babylon-operacao.base44.app/">
+      <a class="program-card" data-card-id="gestao-operacional" href="https://babylon-operacao.base44.app/">
         <div class="program-card-content">
           <div class="icon">🏪</div>
           <small>Gestão operacional integrada</small>
@@ -701,7 +928,7 @@
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="program-card" href="https://cotacao-babylon.base44.app/">
+      <a class="program-card" data-card-id="cotacao" href="https://cotacao-babylon.base44.app/">
         <div class="program-card-content">
           <div class="icon">📋</div>
           <small>Cotações e compras</small>
@@ -714,7 +941,7 @@
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="program-card" href="https://app--controle-financeiro-babylon-bc532c72.base44.app/">
+      <a class="program-card" data-card-id="controle-financeiro" href="https://app--controle-financeiro-babylon-bc532c72.base44.app/">
         <div class="program-card-content">
           <div class="icon">💰</div>
           <small>Gestão financeira</small>
@@ -727,7 +954,7 @@
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="program-card" href="https://controle-servicos.base44.app/">
+      <a class="program-card" data-card-id="servicos" href="https://controle-servicos.base44.app/">
         <div class="program-card-content">
           <div class="icon">🛠️</div>
           <small>Serviços obrigatórios</small>
@@ -740,7 +967,7 @@
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="program-card" href="https://babylon-equipamentos-360.mvp-df.chatgpt.site/">
+      <a class="program-card" data-card-id="equipamentos" href="https://babylon-equipamentos-360.mvp-df.chatgpt.site/">
         <div class="program-card-content">
           <div class="icon">⚙️</div>
           <small>Patrimônio e manutenção</small>
@@ -753,7 +980,7 @@
         <span class="button-text">Abrir sistema →</span>
       </a>
 
-      <a class="program-card" href="https://babylon-43788609.base44.app/">
+      <a class="program-card" data-card-id="presenca" href="https://babylon-43788609.base44.app/">
         <div class="program-card-content">
           <div class="icon">🧾</div>
           <small>Equipe e frequência</small>
@@ -761,6 +988,23 @@
           <p>
             Sistema para controle de presença, registros de equipe,
             acompanhamento de frequência e organização operacional da Babylon.
+          </p>
+        </div>
+        <span class="button-text">Abrir sistema →</span>
+      </a>
+
+      <a
+        class="program-card"
+        data-card-id="contagem-dinheiro"
+        href="https://babylon-contagem-caixa.mvp-df.chatgpt.site/"
+      >
+        <div class="program-card-content">
+          <div class="icon">🧮</div>
+          <small>Caixa e conferência</small>
+          <h2>Contagem de Dinheiro</h2>
+          <p>
+            Sistema para contagem de cédulas e moedas na abertura e no fechamento
+            do caixa, conferência de valores e organização do controle diário.
           </p>
         </div>
         <span class="button-text">Abrir sistema →</span>
@@ -800,8 +1044,229 @@
     </footer>
   </main>
 
+  <div id="adminModal" class="admin-modal" aria-hidden="true">
+    <div class="admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+      <div class="admin-modal-head">
+        <div>
+          <h2 id="adminModalTitle">Acesso administrativo</h2>
+          <p>Entre com o usuário administrador criado no Supabase para reorganizar os cards.</p>
+        </div>
+
+        <button class="modal-close" type="button" aria-label="Fechar" onclick="fecharAdminModal()">×</button>
+      </div>
+
+      <input
+        type="email"
+        id="adminEmail"
+        autocomplete="username"
+        placeholder="E-mail do administrador"
+      />
+
+      <input
+        type="password"
+        id="adminPassword"
+        autocomplete="current-password"
+        placeholder="Senha do administrador"
+        onkeydown="if(event.key === 'Enter') autenticarAdministrador()"
+      />
+
+      <button id="adminLoginBtn" class="admin-login-btn" onclick="autenticarAdministrador()">
+        Entrar para organizar
+      </button>
+
+      <div id="adminStatus" class="status-message"></div>
+
+      <div class="admin-hint">
+        A ordem dos cards é salva online no Supabase. Nenhuma ordem é gravada em localStorage.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
     const SENHA_CORRETA = "1212";
+
+    const SUPABASE_URL = "https://qqmecinslmzxohlrvdal.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_XTCtIbVTSKkpHSHiYozcWQ_N9DA2UH3";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: true,
+          detectSessionInUrl: false
+        }
+      }
+    );
+
+    let modoOrganizacao = false;
+    let cardArrastado = null;
+    let pointerIdAtivo = null;
+
+    const ordemPadrao = [
+      "gestao-operacional",
+      "contagem-dinheiro",
+      "controle-financeiro",
+      "cotacao",
+      "presenca",
+      "equipamentos",
+      "servicos"
+    ];
+
+    function mostrarStatus(elementId, mensagem, tipo = "ok") {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+
+      el.textContent = mensagem;
+      el.className = `status-message show ${tipo}`;
+    }
+
+    function limparStatus(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+
+      el.textContent = "";
+      el.className = "status-message";
+    }
+
+    async function carregarOrdemCards() {
+      const cards = document.getElementById("cards");
+
+      try {
+        const { data, error } = await supabaseClient
+          .from("configuracao_cards")
+          .select("ordem")
+          .eq("id", 1)
+          .single();
+
+        if (error) throw error;
+
+        if (data && Array.isArray(data.ordem)) {
+          aplicarOrdem(data.ordem);
+        } else {
+          aplicarOrdem(ordemPadrao);
+        }
+      } catch (erro) {
+        console.error("Não foi possível carregar a ordem dos cards:", erro);
+        aplicarOrdem(ordemPadrao);
+      }
+
+      if (cards) {
+        cards.querySelectorAll(".program-card").forEach(adicionarHandleSeNecessario);
+      }
+    }
+
+    function aplicarOrdem(ordem) {
+      const container = document.getElementById("cards");
+      if (!container) return;
+
+      const cards = Array.from(container.querySelectorAll(".program-card"));
+      const mapa = new Map(cards.map(card => [card.dataset.cardId, card]));
+
+      ordem.forEach(id => {
+        const card = mapa.get(id);
+        if (card) {
+          container.appendChild(card);
+          mapa.delete(id);
+        }
+      });
+
+      // Cards novos que ainda não estejam registrados no banco ficam no final.
+      mapa.forEach(card => container.appendChild(card));
+    }
+
+    function obterOrdemAtual() {
+      return Array.from(
+        document.querySelectorAll("#cards .program-card")
+      ).map(card => card.dataset.cardId);
+    }
+
+    function adicionarHandleSeNecessario(card) {
+      if (card.querySelector(".drag-handle")) return;
+
+      const handle = document.createElement("div");
+      handle.className = "drag-handle";
+      handle.textContent = "☰ Arraste para mover";
+      handle.setAttribute("role", "button");
+      handle.setAttribute("aria-label", "Arraste para mover este card");
+
+      handle.addEventListener("pointerdown", iniciarArraste);
+      handle.addEventListener("pointermove", moverArraste);
+      handle.addEventListener("pointerup", finalizarArraste);
+      handle.addEventListener("pointercancel", finalizarArraste);
+
+      card.insertBefore(handle, card.firstChild);
+    }
+
+    function iniciarArraste(event) {
+      if (!modoOrganizacao) return;
+
+      event.preventDefault();
+
+      const handle = event.currentTarget;
+      const card = handle.closest(".program-card");
+
+      cardArrastado = card;
+      pointerIdAtivo = event.pointerId;
+
+      card.classList.add("dragging-card");
+      handle.setPointerCapture(event.pointerId);
+    }
+
+    function moverArraste(event) {
+      if (!modoOrganizacao || !cardArrastado || event.pointerId !== pointerIdAtivo) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const alvo = document
+        .elementFromPoint(event.clientX, event.clientY)
+        ?.closest(".program-card");
+
+      if (!alvo || alvo === cardArrastado) return;
+
+      const container = document.getElementById("cards");
+      if (!container || alvo.parentElement !== container) return;
+
+      const rect = alvo.getBoundingClientRect();
+      const centroX = rect.left + rect.width / 2;
+      const centroY = rect.top + rect.height / 2;
+
+      const distanciaVertical = Math.abs(event.clientY - centroY);
+      const usarVertical = distanciaVertical > rect.height * 0.22;
+
+      const inserirAntes = usarVertical
+        ? event.clientY < centroY
+        : event.clientX < centroX;
+
+      container.insertBefore(
+        cardArrastado,
+        inserirAntes ? alvo : alvo.nextSibling
+      );
+    }
+
+    function finalizarArraste(event) {
+      if (!cardArrastado) return;
+
+      const handle = event.currentTarget;
+
+      if (
+        pointerIdAtivo !== null &&
+        handle.hasPointerCapture &&
+        handle.hasPointerCapture(pointerIdAtivo)
+      ) {
+        handle.releasePointerCapture(pointerIdAtivo);
+      }
+
+      cardArrastado.classList.remove("dragging-card");
+      cardArrastado = null;
+      pointerIdAtivo = null;
+    }
 
     function validarSenha() {
       const senha = document.getElementById("senha").value;
@@ -818,23 +1283,210 @@
         intro.style.display = "block";
         topActions.style.display = "block";
         erro.style.display = "none";
+
+        carregarOrdemCards();
       } else {
         erro.style.display = "block";
       }
     }
 
-    function sair() {
-      sessionStorage.removeItem("babylon_programas_autorizado");
+    async function sair() {
+      await supabaseClient.auth.signOut();
 
+      modoOrganizacao = false;
+
+      document.getElementById("cards").classList.remove("organizing");
+      document.getElementById("organizeBar").classList.remove("active");
+      document.getElementById("organizarBtn").style.display = "";
       document.getElementById("cards").style.display = "none";
       document.getElementById("intro").style.display = "none";
       document.getElementById("topActions").style.display = "none";
       document.getElementById("loginBox").style.display = "block";
       document.getElementById("senha").value = "";
       document.getElementById("erro").style.display = "none";
+
+      sessionStorage.removeItem("babylon_programas_autorizado");
+
+      fecharAdminModal();
     }
 
-    window.onload = function () {
+    async function solicitarOrganizacao() {
+      limparStatus("adminStatus");
+      limparStatus("orderStatus");
+
+      const { data } = await supabaseClient.auth.getSession();
+
+      if (data?.session) {
+        ativarModoOrganizacao();
+        return;
+      }
+
+      abrirAdminModal();
+    }
+
+    function abrirAdminModal() {
+      const modal = document.getElementById("adminModal");
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+
+      setTimeout(() => {
+        document.getElementById("adminEmail").focus();
+      }, 50);
+    }
+
+    function fecharAdminModal() {
+      const modal = document.getElementById("adminModal");
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+
+      document.getElementById("adminPassword").value = "";
+      limparStatus("adminStatus");
+    }
+
+    async function autenticarAdministrador() {
+      const email = document.getElementById("adminEmail").value.trim();
+      const password = document.getElementById("adminPassword").value;
+      const botao = document.getElementById("adminLoginBtn");
+
+      limparStatus("adminStatus");
+
+      if (!email || !password) {
+        mostrarStatus(
+          "adminStatus",
+          "Informe o e-mail e a senha do administrador.",
+          "error"
+        );
+        return;
+      }
+
+      botao.disabled = true;
+      botao.textContent = "Entrando...";
+
+      try {
+        const { error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        fecharAdminModal();
+        ativarModoOrganizacao();
+      } catch (erro) {
+        console.error("Erro no login administrativo:", erro);
+        mostrarStatus(
+          "adminStatus",
+          "Não foi possível entrar. Confira o e-mail e a senha.",
+          "error"
+        );
+      } finally {
+        botao.disabled = false;
+        botao.textContent = "Entrar para organizar";
+      }
+    }
+
+    function ativarModoOrganizacao() {
+      modoOrganizacao = true;
+
+      const cards = document.getElementById("cards");
+      cards.classList.add("organizing");
+
+      cards.querySelectorAll(".program-card").forEach(adicionarHandleSeNecessario);
+
+      document.getElementById("organizeBar").classList.add("active");
+      document.getElementById("organizarBtn").style.display = "none";
+
+      mostrarStatus(
+        "orderStatus",
+        "Organização liberada. Arraste os cards e clique em “Salvar ordem”.",
+        "ok"
+      );
+    }
+
+    async function cancelarOrganizacao() {
+      modoOrganizacao = false;
+
+      document.getElementById("cards").classList.remove("organizing");
+      document.getElementById("organizeBar").classList.remove("active");
+      document.getElementById("organizarBtn").style.display = "";
+
+      await carregarOrdemCards();
+      await supabaseClient.auth.signOut();
+
+      limparStatus("orderStatus");
+    }
+
+    async function salvarOrdem() {
+      if (!modoOrganizacao) return;
+
+      const novaOrdem = obterOrdemAtual();
+
+      mostrarStatus("orderStatus", "Salvando a nova ordem...", "ok");
+
+      try {
+        const { data: sessao } = await supabaseClient.auth.getSession();
+
+        if (!sessao?.session) {
+          throw new Error("Sessão administrativa não encontrada.");
+        }
+
+        const { error } = await supabaseClient
+          .from("configuracao_cards")
+          .update({
+            ordem: novaOrdem,
+            atualizado_em: new Date().toISOString()
+          })
+          .eq("id", 1);
+
+        if (error) throw error;
+
+        mostrarStatus(
+          "orderStatus",
+          "Ordem salva com sucesso no Supabase. Ela será usada em todos os aparelhos.",
+          "ok"
+        );
+
+        modoOrganizacao = false;
+        document.getElementById("cards").classList.remove("organizing");
+        document.getElementById("organizarBtn").style.display = "";
+
+        await supabaseClient.auth.signOut();
+
+        setTimeout(() => {
+          document.getElementById("organizeBar").classList.remove("active");
+          limparStatus("orderStatus");
+        }, 1800);
+      } catch (erro) {
+        console.error("Erro ao salvar a ordem:", erro);
+
+        mostrarStatus(
+          "orderStatus",
+          "Não foi possível salvar a ordem. Entre novamente como administrador e tente outra vez.",
+          "error"
+        );
+      }
+    }
+
+    // Impede a abertura de sistemas enquanto os cards estiverem sendo reorganizados.
+    document.getElementById("cards").addEventListener("click", event => {
+      if (!modoOrganizacao) return;
+
+      const card = event.target.closest(".program-card");
+      if (card) {
+        event.preventDefault();
+      }
+    });
+
+    // Fecha o modal administrativo ao clicar fora da caixa.
+    document.getElementById("adminModal").addEventListener("click", event => {
+      if (event.target.id === "adminModal") {
+        fecharAdminModal();
+      }
+    });
+
+    window.onload = async function () {
+      await carregarOrdemCards();
+
       const autorizado = sessionStorage.getItem("babylon_programas_autorizado");
 
       if (autorizado === "sim") {
