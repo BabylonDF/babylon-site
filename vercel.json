@@ -12,6 +12,10 @@
     {
       "source": "/assets/:path*",
       "destination": "https://babylon-operacao.base44.app/assets/:path*"
+    },
+    {
+      "source": "/api/apps/69ea05c9ed7ea267b2bd6100/functions/getLivePublic",
+      "destination": "https://babylon-operacao.base44.app/api/apps/69ea05c9ed7ea267b2bd6100/functions/getLivePublic"
     }
   ]
 }
