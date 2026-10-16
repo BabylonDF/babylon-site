@@ -10,6 +10,10 @@
       "destination": "https://babylon-operacao.base44.app/eventos"
     },
     {
+      "source": "/eventos/:path*",
+      "destination": "https://babylon-operacao.base44.app/eventos/:path*"
+    },
+    {
       "source": "/assets/:path*",
       "destination": "https://babylon-operacao.base44.app/assets/:path*"
     },
