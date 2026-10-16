@@ -1,0 +1,13 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/eventos",
+      "destination": "https://babylon-operacao.base44.app/eventos"
+    },
+    {
+      "source": "/eventos/",
+      "destination": "https://babylon-operacao.base44.app/eventos"
+    }
+  ]
+}
