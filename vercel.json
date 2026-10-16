@@ -8,6 +8,10 @@
     {
       "source": "/eventos/",
       "destination": "https://babylon-operacao.base44.app/eventos"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "https://babylon-operacao.base44.app/assets/:path*"
     }
   ]
 }
